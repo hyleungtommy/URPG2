@@ -18,16 +18,16 @@ namespace RPG
         {
         }
 
-        public override void takeAction(IFunctionable functionable)
+        public override void TakeAction(IFunctionable functionable)
         {
-            List<BattleMessage> bundle = functionable.use(this, opponent);
+            List<BattleMessage> bundle = functionable.Use(this, opponent);
             curratb = 0;
             scene.createFloatingText(bundle);
         }
 
-        public override void passRound()
+        public override void PassRound()
         {
-            base.passRound();
+            base.PassRound();
             // foreach (Skill s in skillList)
             // {
             //     if (s != null && s.currCooldown > 0) s.currCooldown -= 1;

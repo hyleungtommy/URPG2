@@ -21,7 +21,7 @@ namespace RPG
         public int DropEXP;
         public int DropMoney;
 
-        public EntityEnemy toEntity()
+        public EntityEnemy ToEntity()
         {
             BasicStat stat = new BasicStat(HP, MP, ATK, DEF, MATK, MDEF, AGI, DEX);
             stat = stat.multiply(Param.difficultyModifier[Game.difficulty]);
@@ -34,7 +34,7 @@ namespace RPG
             return entity;
         }
 
-        public EntityEnemy toEntity(int strengthLv, float mapAreaStrengthModifier)
+        public EntityEnemy ToEntity(int strengthLv, float mapAreaStrengthModifier)
         {
             BasicStat stat = new BasicStat(HP, MP, ATK, DEF, MATK, MDEF, AGI, DEX);
             stat = stat.multiply(Constant.enemyStrengthModifier[strengthLv]);

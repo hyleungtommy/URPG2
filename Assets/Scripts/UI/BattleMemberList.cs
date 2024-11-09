@@ -11,40 +11,24 @@ public class BattleMemberList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        list = GameController.Instance.party.getAllUnlockedCharacter();
-        render();
-        //onClickBox(0);
-        // if (scene != null && (scene is SkillScene || scene is EquipmentScene))
-        // {
-        //     onClickBox(Game.selectedCharacterInStatusScene);
-        // }
-        // else
-        // {
-        //     onClickBox(0);
-        // }
-
+        list = GameController.Instance.party.GetAllUnlockedCharacter();
+        Render();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Render()
     {
-
-    }
-
-    public void render()
-    {
-        list = GameController.Instance.party.getAllUnlockedCharacter();
+        list = GameController.Instance.party.GetAllUnlockedCharacter();
         Debug.Log(boxes.Length + "=" + list.Length);
         for (int i = 0; i < boxes.Length; i++)
         {
             
-            boxes[i].render(list[i]);
+            boxes[i].Render(list[i]);
         }
     }
 
-    public void onClickBox(int id)
+    public void OnClickBox(int id)
     {
         selectedCharacterId = id;
-        render();
+        Render();
     }
 }

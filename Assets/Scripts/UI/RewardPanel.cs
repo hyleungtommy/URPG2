@@ -51,7 +51,7 @@ public class RewardPanel : MonoBehaviour
             title.sprite = YouWin;
             textMoney.text = battleCtrl.getTotalMoneyGain().ToString();
             textEXP.text = battleCtrl.getTotalEXPGain().ToString();
-            BattleCharacter[] characters = GameController.Instance.party.getAllBattleCharacter();
+            BattleCharacter[] characters = GameController.Instance.party.GetAllBattleCharacter();
             for (int i = 0; i < 4; i++)
             {
                 expGain[i].gameObject.SetActive(false);

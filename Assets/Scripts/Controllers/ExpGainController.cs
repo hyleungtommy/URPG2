@@ -21,7 +21,7 @@ public class ExpGainController : MonoBehaviour
 
     public void Render()
     {
-        basicBox.render(character);
+        basicBox.Render(character);
         bar.NoAnimationRender(character.expneed, character.currexp);
         levelup.gameObject.SetActive(lvup);
     }

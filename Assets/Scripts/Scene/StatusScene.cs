@@ -14,11 +14,11 @@ public class StatusScene: MonoBehaviour
     [SerializeField] Image bodyImg;
 
     public void OnClickBox(int id){
-        battleMemberList.onClickBox(id);
-        onSelectCharacter(id, battleMemberList.SelectedCharacter);
+        battleMemberList.OnClickBox(id);
+        OnSelectCharacter(id, battleMemberList.SelectedCharacter);
     }
 
-    private void onSelectCharacter(int id, BattleCharacter character)
+    private void OnSelectCharacter(int id, BattleCharacter character)
     {
         if (character != null)
         {

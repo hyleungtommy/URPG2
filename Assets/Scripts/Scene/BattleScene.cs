@@ -53,7 +53,7 @@ public class BattleScene : BasicScene
             //     battleCtrl = new BattleCtrl(Game.currentDungeon.GenerateEnemy(), Game.party.createBattleParty(), this);
             //     battleBG.sprite = Game.currentDungeon.battleImg;
             // }else{
-                battleCtrl = new BattleCtrl(Game.currLoc.generateEnemy(), GameController.Instance.party.createBattleParty(), this);
+                battleCtrl = new BattleCtrl(Game.currLoc.generateEnemy(), GameController.Instance.party.CreateBattleParty(), this);
                 battleBG.sprite = Game.currLoc.battleImg;
             // }
             

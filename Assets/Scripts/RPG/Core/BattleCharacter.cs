@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RPG
 {
     [CreateAssetMenu(fileName = "BattleCharacter", menuName = "Character/BattleCharacter")]
-    public class BattleCharacter : ScriptableObject, Displayable
+    public class BattleCharacter : ScriptableObject, IDisplayable
     {
         public int id;
         public string characterName;

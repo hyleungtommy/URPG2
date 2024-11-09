@@ -23,7 +23,7 @@ namespace RPG
             this.dropMoney = dropMoney;
         }
 
-        public override void takeAction(IFunctionable functionable)
+        public override void TakeAction(IFunctionable functionable)
         {
             // Pick target
             Entity mostHated = null;
@@ -43,11 +43,11 @@ namespace RPG
                 {
                     attackTarget = players[UnityEngine.Random.Range(0, players.Length)];
                 }
-                setOpponent(attackTarget);
+                SetOpponent(attackTarget);
             }
             else
             {// pick most hated
-                setOpponent(mostHated);
+                SetOpponent(mostHated);
             }
 
 
@@ -84,13 +84,13 @@ namespace RPG
 			Observer.createFloatingText (bundle);
 			Debug.Log ("e taske action");
 			*/
-            bundle = useNormalAttack();
+            bundle = UseNormalAttack();
             scene.createFloatingText(bundle);
         }
 
-        public override void onReceiveDamage(Entity attacker, float damage)
+        public override void OnReceiveDamage(Entity attacker, float damage)
         {
-            base.onReceiveDamage(attacker, damage);
+            base.OnReceiveDamage(attacker, damage);
             hateMeter[attacker.id] += Mathf.Log10(damage);
         }
 

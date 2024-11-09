@@ -34,7 +34,7 @@ namespace RPG
             //if player is in last zone, generate boss enemy
             if (Game.currLoc.currZone == Game.currLoc.maxZone)
             {
-                generatedEnemyList.Add(boss.toEntity());
+                generatedEnemyList.Add(boss.ToEntity());
             }
             else
             {
@@ -43,7 +43,7 @@ namespace RPG
                 if (rareEnemy != null && rndRareEnemy <= Param.rareEnemyAppearChance)
                 {
                     Game.rareEnemyAppeared = true;
-                    generatedEnemyList.Add(rareEnemy.toEntity());
+                    generatedEnemyList.Add(rareEnemy.ToEntity());
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace RPG
                         // }else{
                         //     rndEnemyStrength = UnityEngine.Random.Range(0, 5);
                         // }
-                        EntityEnemy enemy = enemyList[Util.getRandomIndexFrom(appearChance, 100f)].toEntity(rndEnemyStrength, mapEnemyModifier);
+                        EntityEnemy enemy = enemyList[Util.getRandomIndexFrom(appearChance, 100f)].ToEntity(rndEnemyStrength, mapEnemyModifier);
                         generatedEnemyList.Add(enemy);
                     }
                 }

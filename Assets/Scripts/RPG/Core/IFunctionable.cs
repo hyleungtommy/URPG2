@@ -8,6 +8,6 @@ namespace RPG
     /// </summary>
     public interface IFunctionable
     {
-        List<BattleMessage> use(Entity user, Entity[] target);
+        List<BattleMessage> Use(Entity user, Entity[] target);
     }
 }

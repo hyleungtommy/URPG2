@@ -47,7 +47,7 @@ namespace RPG
             for (int i = 0; i < enemyParty.Length; i++)
             {
                 enemyParty[i].id = i;
-                enemyParty[i].setOpponent(playerParty);
+                enemyParty[i].SetOpponent(playerParty);
                 enemyParty[i].setupHateMeter(playerParty);
                 enemyParty[i].scene = scene;
             }
@@ -56,7 +56,7 @@ namespace RPG
                 if (playerParty[i] != null)
                 {
                     playerParty[i].id = i;
-                    playerParty[i].setOpponent(enemyParty);
+                    playerParty[i].SetOpponent(enemyParty);
                     playerParty[i].scene = scene;
                 }
 
@@ -108,7 +108,7 @@ namespace RPG
                 {
                     actionEntity = actionQueue.Dequeue();
                     //Debug.Log("action Entity:" + actionEntity.Name);
-                    actionEntity.passRound();
+                    actionEntity.PassRound();
                     if (actionEntity.currhp > 0)
                     {
                         // if (actionEntity.isStunned())
@@ -126,7 +126,7 @@ namespace RPG
                             else
                             {
                                 battleState = ENEMY_TURN;
-                                actionEntity.takeAction(null);
+                                actionEntity.TakeAction(null);
                                 battleState = BATTLE_RUNNING;
                             }
                         // }
@@ -136,12 +136,12 @@ namespace RPG
                 {
                     foreach (EntityPlayer player in playerParty)
                     {
-                        if (player != null && player.tick(getOpponentAverageAGI(FRICTION_ENEMY)))
+                        if (player != null && player.Tick(getOpponentAverageAGI(FRICTION_ENEMY)))
                             actionQueue.Enqueue(player);
                     }
                     foreach (EntityEnemy enemy in enemyParty)
                     {
-                        if (enemy != null && enemy.tick(getOpponentAverageAGI(FRICTION_PLAYER)))
+                        if (enemy != null && enemy.Tick(getOpponentAverageAGI(FRICTION_PLAYER)))
                             actionQueue.Enqueue(enemy);
                     }
                 }
@@ -186,15 +186,15 @@ namespace RPG
 
                 if (playerSelectedEntity != null)
                 {
-                    actionEntity.setOpponent(playerSelectedEntity);
+                    actionEntity.SetOpponent(playerSelectedEntity);
                     if (actionType == ACTION_ATTACK)
                     {
-                        List<BattleMessage> bundle = actionEntity.useNormalAttack();
+                        List<BattleMessage> bundle = actionEntity.UseNormalAttack();
                         scene.createFloatingText(bundle);
                     }
                     else if (actionType == ACTION_ITEM || actionType == ACTION_SKILL)
                     {
-                        actionEntity.takeAction(functionable);
+                        actionEntity.TakeAction(functionable);
 
                     }
 
@@ -321,7 +321,7 @@ namespace RPG
                 //RPGSystem.questManager.updateQuest(enemyParty);
                 levelUps = new bool[] { false, false, false, false };
                 int i = 0;
-                foreach (BattleCharacter c in GameController.Instance.party.getAllBattleCharacter())
+                foreach (BattleCharacter c in GameController.Instance.party.GetAllBattleCharacter())
                 {
                     if (c != null)
                     {
@@ -354,7 +354,7 @@ namespace RPG
         {
 
             int maxLvInBattleParty = 0;
-            foreach (BattleCharacter c in GameController.Instance.party.getAllBattleCharacter())
+            foreach (BattleCharacter c in GameController.Instance.party.GetAllBattleCharacter())
             {
                 if (c != null && c.unlocked && c.lv > maxLvInBattleParty)
                 {

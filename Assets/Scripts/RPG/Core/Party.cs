@@ -16,7 +16,7 @@ public class Party : ScriptableObject
     /// <summary>
     /// Get all player character that is in the first column (will go to battle)
     /// </summary>
-    public BattleCharacter[] getAllBattleCharacter()
+    public BattleCharacter[] GetAllBattleCharacter()
     {
         return battleParty.Where(a => (a.unlocked == true) && a.listPos < 4).ToArray();
     }
@@ -25,7 +25,7 @@ public class Party : ScriptableObject
     /// Get all available characters in the party
     /// </summary>
     /// <returns>A list of available character ordered according to predefined position in selection menu</returns>
-    public BattleCharacter[] getAllUnlockedCharacter()
+    public BattleCharacter[] GetAllUnlockedCharacter()
     {
         BattleCharacter[] list = new BattleCharacter[8];
         for (int i = 0; i < 8; i++)
@@ -42,10 +42,10 @@ public class Party : ScriptableObject
     /// Create a list of EntityPlayer from the first column of the selection menu
     /// </summary>
     /// <returns>A list of EntityPlayer object represent the party member that join the battle</returns>
-    public EntityPlayer[] createBattleParty()
+    public EntityPlayer[] CreateBattleParty()
     {
 
-        BattleCharacter[] list = getAllBattleCharacter();
+        BattleCharacter[] list = GetAllBattleCharacter();
         List<EntityPlayer> elist = new List<EntityPlayer>();
         for (int i = 0; i < list.Length; i++)
         {
@@ -60,7 +60,7 @@ public class Party : ScriptableObject
     /// <summary>
     /// Unlock a specific character
     /// </summary>
-    public void unlockCharacter(int pos)
+    public void UnlockCharacter(int pos)
     {
         if (pos > 0 && pos < battleParty.Count)
         {
@@ -129,7 +129,7 @@ public class Party : ScriptableObject
     /// <summary>
     /// Testing purpose, unlock all member from start
     /// </summary>
-    public void unlockAllMember()
+    public void UnlockAllMember()
     {
         foreach (BattleCharacter ch in battleParty)
         {
@@ -154,7 +154,7 @@ public class Party : ScriptableObject
     /// <summary>
     /// Add upgrade points to the entire party
     /// </summary>
-    public void addUPPTForParty(int amount)
+    public void AddUPPTForParty(int amount)
     {
         foreach (BattleCharacter ch in battleParty)
         {

@@ -49,18 +49,18 @@ namespace RPG
             // elementalDamage = new ElementalTemplate();
         }
 
-        public void setOpponent(Entity entity)
+        public void SetOpponent(Entity entity)
         {
             opponent = new Entity[1];
             opponent[0] = entity;
         }
 
-        public void setOpponent(Entity[] entity)
+        public void SetOpponent(Entity[] entity)
         {
             opponent = entity;
         }
 
-        public bool tick(float opponentAvgAGI)
+        public bool Tick(float opponentAvgAGI)
         {
             if (currhp > 0)
             {
@@ -81,24 +81,24 @@ namespace RPG
         //     return buffState.isStunned();
         // }
 
-        public virtual void takeAction(IFunctionable functionable)
+        public virtual void TakeAction(IFunctionable functionable)
         {
 
         }
 
-        public virtual void onReceiveDamage(Entity attacker, float damage)
+        public virtual void OnReceiveDamage(Entity attacker, float damage)
         {
 
         }
 
-        public virtual void passRound()
+        public virtual void PassRound()
         {
             //buffState.passRound(this);
             isDefensing = false;
             reflectiveDefense = false;
         }
 
-        public List<BattleMessage> useNormalAttack()
+        public List<BattleMessage> UseNormalAttack()
         {
 
             List<BattleMessage> msgs = new List<BattleMessage>();
@@ -117,28 +117,28 @@ namespace RPG
                 // }
                 float attackModifier = 1f;
 
-                float attackPower = (this.stat.ATK * 1 * UnityEngine.Random.Range(0.9f, 1.1f) * attackModifier) - (opponent[j].isDefensing ? opponent[j].stat.DEF * opponent[j].defenseModifier : opponent[j].stat.DEF);
+                float attackPower = (stat.ATK * 1 * Random.Range(0.9f, 1.1f) * attackModifier) - (opponent[j].isDefensing ? opponent[j].stat.DEF * opponent[j].defenseModifier : opponent[j].stat.DEF);
                 // * ModifierFromBuffHelper.getTargetDefenseModifierFromSpecialBuff(opponent[j]);
                 // int elementalAttackPower = Util.CalculateElementalDamage(this.elementalDamage, opponent[j].elementResistance, attackPower);
                 // attackPower += elementalAttackPower;
                 
                 if (attackPower <= 0f) attackPower = 1f;
-                float hitChance = this.stat.DEX / (opponent[j].stat.AGI * 2f);
+                float hitChance = stat.DEX / (opponent[j].stat.AGI * 2f);
                 if (hitChance > 1.0f) hitChance = 1.0f;
                 else if (hitChance <= 0.1f) hitChance = 0.1f;
 
-                if (UnityEngine.Random.Range(0.0f, 1.0f) > hitChance)
+                if (Random.Range(0.0f, 1.0f) > hitChance)
                     atkMsg.type = BattleMessage.Type.Miss;
                 else
                 {
                     bool crititcal = false;
-                    float critChance = Mathf.Log(this.stat.DEX / opponent[j].stat.AGI);
+                    float critChance = Mathf.Log(stat.DEX / opponent[j].stat.AGI);
                     if (critChance < 0.05f)
                         critChance = 0.05f;
-                    if (UnityEngine.Random.Range(0.0f, 1.0f) <= critChance)
+                    if (Random.Range(0.0f, 1.0f) <= critChance)
                     {
                         crititcal = true;
-                        attackPower *= (this.stat.DEX / opponent[j].stat.DEX) * 2;
+                        attackPower *= (stat.DEX / opponent[j].stat.DEX) * 2;
                     }
 
                     // if(opponent[j] is EntityPlayer && (opponent[j] as EntityPlayer).hasPassiveSkill("Potentiality") && attackPower >= opponent[j].stat.HP/2 && attackPower >= opponent[j].currhp && opponent[j].currhp > 1f){
@@ -146,7 +146,7 @@ namespace RPG
                     // }
 
                     opponent[j].currhp -= attackPower;
-                    opponent[j].onReceiveDamage(this, attackPower);
+                    opponent[j].OnReceiveDamage(this, attackPower);
                     if (crititcal)
                         atkMsg.type = BattleMessage.Type.Critical;
                     else
