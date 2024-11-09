@@ -29,11 +29,8 @@ public class DialogController : MonoBehaviour
     }
 
     public IEnumerator DisplayDialog(NPC npc){
-        Debug.Log("show dialog");
         yield return new WaitForEndOfFrame();
         OnShowDialog?.Invoke();
-        Debug.Log(npc.faceImg);
-        Debug.Log(NPCFace.sprite);
         NPCFace.sprite = npc.faceImg;
         NPCName.text = npc.NPCName;
         this.dialog = npc.dialog;
@@ -47,11 +44,9 @@ public class DialogController : MonoBehaviour
     {
         if(!isTyping){
             ++currentLine;
-            Debug.Log("current line=" + currentLine);
             if(currentLine < dialog.Lines.Count){
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }else{
-                Debug.Log("end dialog");
                 dialogBox.SetActive(false);
                 dialogCanvas.SetActive(false);
                 currentLine = 0;
@@ -68,16 +63,5 @@ public class DialogController : MonoBehaviour
             yield return new WaitForSeconds(1f / letterPerSecond);
         }
         isTyping = false;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

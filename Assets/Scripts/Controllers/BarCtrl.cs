@@ -12,29 +12,28 @@ public class BarCtrl : MonoBehaviour {
     private float maxValue;
     private float barValue;
 
-    public void render(float maxValue, float currValue)
+    public void Render(float maxValue, float currValue)
     {
         //Debug.Log ("redner" + currValue + " " + maxValue);
         this.maxValue = maxValue;
         this.barValue = currValue;
         if (textBarVlaue.IsActive())
             textBarVlaue.text = (int)(currValue) + "/" + (int)maxValue;
-        StartCoroutine(animateBarChange());
+        StartCoroutine(AnimateBarChange());
     }
 
-    public void noAnimationRender(float maxValue, float currValue)
+    public void NoAnimationRender(float maxValue, float currValue)
     {
         this.maxValue = maxValue;
         this.barValue = currValue;
         if (textBarVlaue != null && textBarVlaue.IsActive() && !isATBBar)
             textBarVlaue.text = (int)Mathf.Floor(currValue) + "/" + (int)maxValue;
         bar.value = currValue / maxValue;
-        //		Debug.Log ("bar v" + bar.value);
         barLeftEnd.gameObject.SetActive(bar.value > 0);
         barRightEnd.gameObject.SetActive(bar.value >= bar.maxValue);
     }
 
-    IEnumerator animateBarChange()
+    IEnumerator AnimateBarChange()
     {
         float passedTime = 0.5f;
         float targetValue = barValue / maxValue;
@@ -50,14 +49,4 @@ public class BarCtrl : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
         } while (passedTime >= 0f);
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

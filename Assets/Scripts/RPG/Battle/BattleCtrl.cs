@@ -364,7 +364,7 @@ namespace RPG
             float levelPanality = 1.0f;
             if (maxLvInBattleParty > Game.currLoc.maxLv)
             {
-                levelPanality -= ((maxLvInBattleParty - Game.currLoc.maxLv) * 0.1f);
+                levelPanality -= (maxLvInBattleParty - Game.currLoc.maxLv) * 0.1f;
             }
             if (levelPanality < 0.1f)
                 levelPanality = 0.1f;

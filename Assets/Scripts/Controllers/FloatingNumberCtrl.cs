@@ -9,10 +9,6 @@ public class FloatingNumberCtrl : MonoBehaviour {
 	private float localTimer = 0.0f;
 	private int damageInt = -1;
 
-	void Start(){
-
-	}
-
 	void receiveDamageMessage(int d){
 		if (damageInt == -1) 
 			damageInt = d;

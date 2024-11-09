@@ -12,28 +12,17 @@ public class ExpGainController : MonoBehaviour
     public Image levelup;
     BattleCharacter character;
     private bool lvup;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void setCharacter(BattleCharacter character, bool lvup)
+    public void SetCharacter(BattleCharacter character, bool lvup)
     {
         this.character = character;
         this.lvup = lvup;
     }
 
-    public void render()
+    public void Render()
     {
         basicBox.render(character);
-        bar.noAnimationRender(character.expneed, character.currexp);
+        bar.NoAnimationRender(character.expneed, character.currexp);
         levelup.gameObject.SetActive(lvup);
     }
 }

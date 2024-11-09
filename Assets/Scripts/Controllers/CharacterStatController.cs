@@ -35,9 +35,9 @@ public class CharacterStatController : MonoBehaviour
         {
             gameObject.SetActive(true);
             player.sprite = character.img;
-            hpBar.noAnimationRender(character.stat.HP, character.currhp);
-            mpBar.noAnimationRender(character.stat.MP, character.currmp);
-            atbBar.noAnimationRender(100f, character.curratb);
+            hpBar.NoAnimationRender(character.stat.HP, character.currhp);
+            mpBar.NoAnimationRender(character.stat.MP, character.currmp);
+            atbBar.NoAnimationRender(100f, character.curratb);
             //buffCtrl.render(character.buffState);
         }
         else

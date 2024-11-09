@@ -59,8 +59,8 @@ public class RewardPanel : MonoBehaviour
             for (int i = 0; i < characters.Length; i++)
             {
                 expGain[i].gameObject.SetActive(true);
-                expGain[i].setCharacter(characters[i], battleCtrl.levelUps[i]);
-                expGain[i].render();
+                expGain[i].SetCharacter(characters[i], battleCtrl.levelUps[i]);
+                expGain[i].Render();
             }
             // for(int i = 0; i < enemyDropDisplays.Length ; i++){
             //     if(i >= drops.Count){

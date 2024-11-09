@@ -44,16 +44,14 @@ namespace RPG
                     attackTarget = players[UnityEngine.Random.Range(0, players.Length)];
                 }
                 setOpponent(attackTarget);
-                //Debug.Log ("rnd pick");
             }
             else
             {// pick most hated
                 setOpponent(mostHated);
-                //Debug.Log("most hated = " + mostHated.Name);
             }
 
 
-            List<BattleMessage> bundle = null;
+            List<BattleMessage> bundle;
             /*
 			Debug.Log ("skillset:" + skillset);
 			if (skillset!= null && skillset.Length > 0) {
@@ -94,7 +92,6 @@ namespace RPG
         {
             base.onReceiveDamage(attacker, damage);
             hateMeter[attacker.id] += Mathf.Log10(damage);
-            //			Debug.Log (Name + " hateMeter " + attacker.Name + " " + Mathf.Log10 (damage));
         }
 
         public void setupHateMeter(Entity[] players)

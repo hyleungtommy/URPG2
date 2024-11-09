@@ -26,7 +26,6 @@ public class MapScene : MonoBehaviour
         Game.currentMapMode = Constant.MapModeExplore;
         Game.state = Game.State.Battle;
         UIController.Instance.HideAllPanel();
-        SceneController.Instance.DisableSceneTransitCanvas();
         SceneManager.LoadScene("Battle");
     }
 
@@ -35,7 +34,6 @@ public class MapScene : MonoBehaviour
         Game.currentMapMode = Constant.MapModeProgressive;
         Game.state = Game.State.Battle;
         UIController.Instance.HideAllPanel();
-        SceneController.Instance.DisableSceneTransitCanvas();
         SceneManager.LoadScene("Battle");
     }
 }

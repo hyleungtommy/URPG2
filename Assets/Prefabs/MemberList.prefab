@@ -1594,7 +1594,7 @@ GameObject:
   - component: {fileID: 7042733135191726215}
   - component: {fileID: 3677716483356031771}
   m_Layer: 5
-  m_Name: MemberIcons
+  m_Name: MemberList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1672,7 +1672,6 @@ MonoBehaviour:
   - {fileID: 5738960503871704396}
   - {fileID: 7673143462911180545}
   - {fileID: 4157740007453427605}
-  scene: {fileID: 0}
 --- !u!1 &7042733135375430196
 GameObject:
   m_ObjectHideFlags: 0

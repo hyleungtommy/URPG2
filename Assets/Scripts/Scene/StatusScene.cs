@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class StatusScene: MonoBehaviour
 {
-    public BattleMemberList battleMemberList;
-    public Text memberName;
-    public Text memberStatRight;
-    public Text memberStatBottom;
-    public Image bodyImg;
+    [SerializeField] BattleMemberList battleMemberList;
+    [SerializeField] Text memberName;
+    [SerializeField] Text memberStatRight;
+    [SerializeField] Text memberStatBottom;
+    [SerializeField] Text experienceText;
+    [SerializeField] Image bodyImg;
 
     public void OnClickBox(int id){
         battleMemberList.onClickBox(id);
@@ -27,6 +28,7 @@ public class StatusScene: MonoBehaviour
             BasicStat stat = character.stat.toBasicStat();
             memberStatRight.text = stat.HP + "\n" + stat.MP + "\n" + stat.ATK + "\n" + stat.DEF + "\n" + stat.MATK + "\n" + stat.MDEF + "\n" + stat.AGI + "\n" + stat.DEX;
             memberStatBottom.text = character.uppt.ToString() + "\n" + character.skillPtsSpent + "/" + character.skillPtsEarned;
+            experienceText.text = character.currexp + "/" + character.expneed;
             //Game.selectedCharacterInStatusScene = id;
         }
     }

@@ -8,7 +8,6 @@ public class AnimationController : MonoBehaviour {
 	void Start ()
 	{
 		animator = (Animator)GetComponent ("Animator");
-		//animator.Play ("Basic Attack");
 	}
 
 	// Update is called once per frame
@@ -20,11 +19,5 @@ public class AnimationController : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
-	}
-
-	void AnimationEnd() 
-	{
-
-		//Destroy (gameObject); //消滅物件
 	}
 }

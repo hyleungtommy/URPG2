@@ -114,13 +114,13 @@ public class BattleScene : BasicScene
     {
         if (battleCtrl.bossFight || Game.rareEnemyAppeared)
         {
-            bossStat.render();
+            bossStat.Render();
         }
         else
         {
             for (int i = 0; i < enemyStats.Length; i++)
             {
-                enemyStats[i].render();
+                enemyStats[i].Render();
             }
         }
 
@@ -180,13 +180,13 @@ public class BattleScene : BasicScene
 
                     if (battleCtrl.bossFight || Game.rareEnemyAppeared)
                     {
-                        bossStat.render();
+                        bossStat.Render();
                     }
                     else
                     {
                         for (int i = 0; i < enemyStats.Length; i++)
                         {
-                            enemyStats[i].render();
+                            enemyStats[i].Render();
                         }
                     }
 
@@ -339,13 +339,13 @@ public class BattleScene : BasicScene
         topBar.gameObject.SetActive(false);
         if (battleCtrl.bossFight || Game.rareEnemyAppeared)
         {
-            bossStat.render();
+            bossStat.Render();
         }
         else
         {
             for (int i = 0; i < enemyStats.Length; i++)
             {
-                enemyStats[i].render();
+                enemyStats[i].Render();
             }
         }
     }
@@ -372,7 +372,6 @@ public class BattleScene : BasicScene
             case 0: //Back to Main Menu
                 Game.currLoc.resetZoneStatus();
                 Game.state = Game.State.FreeRoam;
-                SceneController.Instance.EnableSceneTransitCanvas();
                 SceneManager.LoadScene("World");
                 break;
             case 1: // Retry Battle
@@ -406,7 +405,6 @@ public class BattleScene : BasicScene
                     //     jumpToScene(SceneName.MainMenu);
                     // }
                     Game.state = Game.State.FreeRoam;
-                    SceneController.Instance.EnableSceneTransitCanvas();
                     SceneManager.LoadScene("World");
                 }
                 // else if(Game.currentMapMode == Constant.MapModeDungeon){
@@ -440,7 +438,6 @@ public class BattleScene : BasicScene
         Transform trans = null;
         if (bundle != null && bundle.Count > 0)
         {
-            int i = 0;
             foreach (BattleMessage message in bundle)
             {
                 if ((message.sender is EntityPlayer && message.isAttackMessage()) || (message.sender is EntityEnemy && !message.isAttackMessage()))
@@ -461,7 +458,7 @@ public class BattleScene : BasicScene
                     trans = playerStats[message.receiver.id].transform;
                 }
                 //Debug.Log("transfor" + transform.ToString());
-                GetComponent<BattleAnimator>().createDamageText(message, trans);
+                GetComponent<BattleAnimator>().CreateDamageText(message, trans);
 
             }
 
@@ -471,14 +468,14 @@ public class BattleScene : BasicScene
             {
                 if (battleCtrl.bossFight || Game.rareEnemyAppeared)
                 {
-                    GetComponent<BattleAnimator>().createSkillAnimation(bundle[0], bossStat.transform);
+                    GetComponent<BattleAnimator>().CreateSkillAnimation(bundle[0], bossStat.transform);
                 }
                 else
                 {
                     for (int j = 0; j < enemyStats.Length; j++)
                     {
                         if (enemyStats[j].enemy.IsActive())
-                            GetComponent<BattleAnimator>().createSkillAnimation(bundle[0], enemyStats[j].transform);
+                            GetComponent<BattleAnimator>().CreateSkillAnimation(bundle[0], enemyStats[j].transform);
                     }
                 }
 
@@ -488,7 +485,7 @@ public class BattleScene : BasicScene
                 for (int j = 0; j < playerStats.Length; j++)
                 {
                     if (playerStats[j].player.IsActive())
-                        GetComponent<BattleAnimator>().createSkillAnimation(bundle[0], playerStats[j].transform);
+                        GetComponent<BattleAnimator>().CreateSkillAnimation(bundle[0], playerStats[j].transform);
                 }
             }
 
@@ -499,7 +496,7 @@ public class BattleScene : BasicScene
 				enemyInfo[bundle [0].sender.Id].GetComponent<BattleEnemyInfoCtrl> ().showSkillButton (bundle [0].SkillName);
 			}
             */
-            GetComponent<BattleAnimator>().createSkillAnimation(bundle[0], trans);
+            GetComponent<BattleAnimator>().CreateSkillAnimation(bundle[0], trans);
 
         }
 
