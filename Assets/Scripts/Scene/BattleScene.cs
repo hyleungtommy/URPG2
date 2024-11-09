@@ -132,9 +132,9 @@ public class BattleScene : BasicScene
 
     IEnumerator tick()
     {
-        while (battleCtrl.battleState == BattleCtrl.BATTLE_RUNNING || battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
+        while (battleCtrl.battleState == BattleCtrl.BattleState.BattleRunning || battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
-            if (battleCtrl.battleState == BattleCtrl.BATTLE_RUNNING)
+            if (battleCtrl.battleState == BattleCtrl.BattleState.BattleRunning)
                 battleCtrl.tick();
             RenderEntityStats();
             yield return new WaitForSeconds(0.05f);
@@ -148,7 +148,7 @@ public class BattleScene : BasicScene
 
     public void onPlayerTurn()
     {
-        battleCtrl.selectionMode = BattleCtrl.SELECTION_NONE;
+        battleCtrl.selectionMode = BattleCtrl.Selection.None;
         actionBtnGrp.SetActive(true);
         topBar.gameObject.SetActive(true);
     }
@@ -168,10 +168,10 @@ public class BattleScene : BasicScene
 
     public void onSelectEnemy(int index)
     {
-        if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
             battleCtrl.selectEnemy(index);
-            if (battleCtrl.selectionMode == BattleCtrl.SELECTION_ATTACK)
+            if (battleCtrl.selectionMode == BattleCtrl.Selection.Attack)
             {
                 battleCtrl.playerUseNormalAttack();
                 if (battleCtrl.actionEntity != null && battleCtrl.actionEntity is EntityPlayer)
@@ -193,7 +193,7 @@ public class BattleScene : BasicScene
                 }
                 actionBtnGrp.SetActive(false);
             }
-            else if (battleCtrl.selectionMode == BattleCtrl.SELECTION_SKILL_USE_ON_ENEMY)
+            else if (battleCtrl.selectionMode == BattleCtrl.Selection.SkillUseOnOpponent)
             {
 
                 battleCtrl.useSelectedSpecial();
@@ -214,10 +214,10 @@ public class BattleScene : BasicScene
     public void onSelectPlayer(int index)
     {
         // when a party member is selected (by either using Item or Skill on Player Party)
-        if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
             battleCtrl.selectPlayer(index);
-            if (battleCtrl.selectionMode == BattleCtrl.SELECTION_ITEM || battleCtrl.selectionMode == BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER)
+            if (battleCtrl.selectionMode == BattleCtrl.Selection.Item || battleCtrl.selectionMode == BattleCtrl.Selection.SkillUseOnPartner)
             {
                 battleCtrl.useSelectedSpecial();
             }
@@ -283,9 +283,9 @@ public class BattleScene : BasicScene
 
     public void onClickAttackButton()
     {
-        if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
-            battleCtrl.selectionMode = BattleCtrl.SELECTION_ATTACK;
+            battleCtrl.selectionMode = BattleCtrl.Selection.Attack;
             //setEnemySelectionArrowActive(true);
             // itemPanel.gameObject.SetActive(false);
             // skillPanel.gameObject.SetActive(false);
@@ -350,9 +350,9 @@ public class BattleScene : BasicScene
         {
             showingRewardPanel = true;
             //rewardPanel.showRewardPanel(this, battleCtrl);
-            rewardPanel.setBattleCtrl(this, this.battleCtrl);
+            rewardPanel.SetBattleCtrl(battleCtrl);
             //rewardPanel.setEnemyDrop(drops);
-            rewardPanel.show();
+            rewardPanel.Show();
             //Game.SaveGame();
         }
 

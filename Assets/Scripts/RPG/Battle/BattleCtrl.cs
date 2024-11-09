@@ -11,7 +11,7 @@ namespace RPG
         public EntityEnemy[] enemyParty { get; set; }
         public EntityPlayer[] playerParty { get; set; }
         private BattleScene scene;
-        public int battleState { get; set; }
+        public BattleState battleState { get; set; }
         public enum BattleState{
             BattleRunning, EnemyTurn, PlayerTurn, PlayerWin, EnemyWin
         }
@@ -24,26 +24,10 @@ namespace RPG
         public enum Action{
             Attack, Item, Skill
         }
-        public const int BATTLE_RUNNING = 0;
-        public const int ENEMY_TURN = 2;
-        public const int PLAYER_TURN = 1;
-        public const int PLAYER_WIN = 3;
-        public const int ENEMY_WIN = 4;
-        public const int FRICTION_PLAYER = 0;
-        public const int FRICTION_ENEMY = 1;
-        public const int SELECTION_NONE = 0;
-        public const int SELECTION_ATTACK = 1;
-        public const int SELECTION_ITEM = 2;
-        public const int SELECTION_SKILL_USE_ON_ENEMY = 3;
-        public const int SELECTION_SKILL_USE_ON_PARTNER = 4;
-        public const int SELECTION_SKILL_PENDING = 5;
-        public const int ACTION_ATTACK = 0;
-        public const int ACTION_ITEM = 1;
-        public const int ACTION_SKILL = 2;
         private Queue<Entity> actionQueue = new Queue<Entity>();
         public Entity actionEntity { get; set; }
         private Entity[] playerSelectedEntity;
-        public int selectionMode { get; set; }
+        public Selection selectionMode { get; set; }
         public bool bossFight { get; set; }
         public bool[] levelUps { get; set; }
         //public List<ItemAndQty> virtualInventory { get; set; }
@@ -84,11 +68,11 @@ namespace RPG
                 bossFight = false;
             }
             //virtualInventory = Game.inventory.CreateVirtualItemInv();
-            battleState = BATTLE_RUNNING;
+            battleState = BattleState.BattleRunning;
         }
-        private Entity getFriction(int friction, int index)
+        private Entity getFriction(Friction friction, int index)
         {
-            if (friction == FRICTION_ENEMY)
+            if (friction == Friction.Enemy)
             {
                 return enemyParty[index];
             }
@@ -98,21 +82,21 @@ namespace RPG
             }
         }
 
-        public float getOpponentAverageAGI(int friction)
+        public float getOpponentAverageAGI(Friction friction)
         {
             float avgAGI = 0.0f;
-            if (friction == FRICTION_ENEMY)
+            if (friction == Friction.Enemy)
             {
                 for (int i = 0; i < enemyParty.Length; i++)
                     avgAGI += enemyParty[i].stat.AGI;
-                return avgAGI / (float)enemyParty.Length;
+                return avgAGI / enemyParty.Length;
             }
             return getFriction(friction, 0).stat.AGI;
         }
 
         public void tick()
         {
-            if (battleState == BATTLE_RUNNING)
+            if (battleState == BattleState.BattleRunning)
             {
                 if (actionQueue.Count > 0)
                 {
@@ -129,15 +113,15 @@ namespace RPG
                         // {
                             if (actionEntity is EntityPlayer)
                             {
-                                battleState = PLAYER_TURN;
+                                battleState = BattleState.PlayerTurn;
                                 scene.onPlayerTurn();
                                 scene.SetTopBarData(actionEntity.name, actionEntity.img);
                             }
                             else
                             {
-                                battleState = ENEMY_TURN;
+                                battleState = BattleState.EnemyTurn;
                                 actionEntity.TakeAction(null);
-                                battleState = BATTLE_RUNNING;
+                                battleState = BattleState.BattleRunning;
                             }
                         // }
                     }
@@ -146,12 +130,12 @@ namespace RPG
                 {
                     foreach (EntityPlayer player in playerParty)
                     {
-                        if (player != null && player.Tick(getOpponentAverageAGI(FRICTION_ENEMY)))
+                        if (player != null && player.Tick(getOpponentAverageAGI(Friction.Enemy)))
                             actionQueue.Enqueue(player);
                     }
                     foreach (EntityEnemy enemy in enemyParty)
                     {
-                        if (enemy != null && enemy.Tick(getOpponentAverageAGI(FRICTION_PLAYER)))
+                        if (enemy != null && enemy.Tick(getOpponentAverageAGI(Friction.Player)))
                             actionQueue.Enqueue(enemy);
                     }
                 }
@@ -161,15 +145,15 @@ namespace RPG
 
         public void updateBattleState()
         {
-            if (isPartyLose(FRICTION_PLAYER))
+            if (DoesPartyLost(Friction.Player))
             {
-                battleState = ENEMY_WIN;
-                postBattleHandler();
+                battleState = BattleState.EnemyWin;
+                PostBattleHandler();
             }
-            else if (isPartyLose(FRICTION_ENEMY))
+            else if (DoesPartyLost(Friction.Enemy))
             {
-                battleState = PLAYER_WIN;
-                postBattleHandler();
+                battleState = BattleState.PlayerWin;
+                PostBattleHandler();
             }
             if (playerSelectedEntity != null)
             {
@@ -185,31 +169,31 @@ namespace RPG
 
         public void playerUseNormalAttack()
         {
-            playerTakeAction(ACTION_ATTACK, null);
+            playerTakeAction(Action.Attack, null);
         }
 
-        private void playerTakeAction(int actionType, IFunctionable functionable)
+        private void playerTakeAction(Action actionType, IFunctionable functionable)
         {
 
-            if (battleState == PLAYER_TURN)
+            if (battleState == BattleState.PlayerTurn)
             {
 
                 if (playerSelectedEntity != null)
                 {
                     actionEntity.SetOpponent(playerSelectedEntity);
-                    if (actionType == ACTION_ATTACK)
+                    if (actionType == Action.Attack)
                     {
                         List<BattleMessage> bundle = actionEntity.UseNormalAttack();
                         scene.CreateBattleAnimation(bundle);
                     }
-                    else if (actionType == ACTION_ITEM || actionType == ACTION_SKILL)
+                    else if (actionType == Action.Item || actionType == Action.Skill)
                     {
                         actionEntity.TakeAction(functionable);
 
                     }
 
                     scene.afterPlayerAction();
-                    battleState = BATTLE_RUNNING;
+                    battleState = BattleState.BattleRunning;
                 }
                 else
                 {
@@ -221,7 +205,7 @@ namespace RPG
         public void onSelectItem(int itemId)
         {
             selectedItemId = itemId;
-            battleState = PLAYER_TURN;
+            battleState = BattleState.PlayerTurn;
         }
 
         public void useSelectedSpecial()
@@ -276,10 +260,10 @@ namespace RPG
             // }
         }
 
-        private bool isPartyLose(int friction)
+        private bool DoesPartyLost(Friction friction)
         {
             int hp0Counter = 0;
-            if (friction == FRICTION_ENEMY)
+            if (friction == Friction.Enemy)
             {
                 foreach (EntityEnemy e in enemyParty)
                 {
@@ -321,11 +305,11 @@ namespace RPG
         }
 
 
-        private void postBattleHandler()
+        private void PostBattleHandler()
         {
             Game.rareEnemyAppeared = false;
             //List<ItemAndQty> drops = new List<ItemAndQty>();
-            if (battleState == PLAYER_WIN)
+            if (battleState == BattleState.PlayerWin)
             {
                 Game.money += getTotalMoneyGain();
                 //RPGSystem.questManager.updateQuest(enemyParty);
@@ -349,10 +333,6 @@ namespace RPG
                 //     Game.platinumCoin += Game.currLoc.platinumCoinGain;
                 // }
                 // Game.questManager.UpdateEnemyCount(enemyParty);
-            }
-            else
-            {
-
             }
             //Game.globalBuffManager.PassRound();
             scene.showRewardPanel();//(drops);
@@ -428,8 +408,8 @@ namespace RPG
 
         public void skipBattle()
         {
-            battleState = PLAYER_WIN;
-            postBattleHandler();
+            battleState = BattleState.PlayerWin;
+            PostBattleHandler();
         }
 
         public EntityPlayer[] getAllLivingPlayer()

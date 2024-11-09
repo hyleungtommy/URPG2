@@ -16,37 +16,24 @@ public class RewardPanel : MonoBehaviour
     public GameObject platinumCoinGain;
     public Text platinumCoinGainText;
     BattleCtrl battleCtrl;
-    BattleScene scene;
     [SerializeField] Sprite YouWin;
     [SerializeField] Sprite YouLose;
     //List<ItemAndQty>drops;
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void setBattleCtrl(BattleScene scene, BattleCtrl battleCtrl)
+    public void SetBattleCtrl(BattleCtrl battleCtrl)
     {
         this.battleCtrl = battleCtrl;
-        this.scene = scene;
     }
 
     // public void setEnemyDrop(List<ItemAndQty>drops){
     //     this.drops = drops;
     // }
 
-    public void show()
+    public void Show()
     {
         gameObject.SetActive(true);
-        if (battleCtrl.battleState == BattleCtrl.PLAYER_WIN)
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerWin)
         {
             title.sprite = YouWin;
             textMoney.text = battleCtrl.getTotalMoneyGain().ToString();
@@ -92,12 +79,7 @@ public class RewardPanel : MonoBehaviour
         }
         btnRebattle.gameObject.SetActive(Game.currentMapMode == Game.MapMode.Explore);
         btnNextArea.gameObject.SetActive((Game.currentMapMode == Game.MapMode.Progression || Game.currentMapMode == Game.MapMode.Dungeon) 
-                                        && battleCtrl.battleState == BattleCtrl.PLAYER_WIN);
+                                        && battleCtrl.battleState == BattleCtrl.BattleState.PlayerWin);
 
-    }
-
-    public void onClickRewardPanelButton(int id)
-    {
-        scene.onClickRewardPanelButton(id);
     }
 }
