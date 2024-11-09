@@ -53,15 +53,15 @@ public class BattleScene : BasicScene
             //     battleCtrl = new BattleCtrl(Game.currentDungeon.GenerateEnemy(), Game.party.createBattleParty(), this);
             //     battleBG.sprite = Game.currentDungeon.battleImg;
             // }else{
-                battleCtrl = new BattleCtrl(Game.currLoc.generateEnemy(), GameController.Instance.party.CreateBattleParty(), this);
+                battleCtrl = new BattleCtrl(Game.currLoc.GenerateEnemy(), GameController.Instance.party.CreateBattleParty(), this);
                 battleBG.sprite = Game.currLoc.battleImg;
             // }
             
-            if (Game.currentMapMode == Constant.MapModeProgressive)
+            if (Game.currentMapMode == Game.MapMode.Progression)
             {
                 textAreaPanel.text = Game.currLoc.currZone + "/" + Game.currLoc.maxZone;
             }
-            areaPanel.gameObject.SetActive(Game.currentMapMode == Constant.MapModeProgressive);
+            areaPanel.gameObject.SetActive(Game.currentMapMode == Game.MapMode.Progression);
 
             if (battleCtrl.bossFight || Game.rareEnemyAppeared)
             {
@@ -110,7 +110,7 @@ public class BattleScene : BasicScene
 
     }
 
-    void render()
+    private void RenderEntityStats()
     {
         if (battleCtrl.bossFight || Game.rareEnemyAppeared)
         {
@@ -136,12 +136,12 @@ public class BattleScene : BasicScene
         {
             if (battleCtrl.battleState == BattleCtrl.BATTLE_RUNNING)
                 battleCtrl.tick();
-            render();
+            RenderEntityStats();
             yield return new WaitForSeconds(0.05f);
         }
     }
 
-    public void setTopBar(string name, Sprite img)
+    public void SetTopBarData(string name, Sprite img)
     {
         topBarText.text = name + " : Please choose action";
     }
@@ -199,7 +199,6 @@ public class BattleScene : BasicScene
                 battleCtrl.useSelectedSpecial();
                 if (battleCtrl.actionEntity != null && battleCtrl.actionEntity is EntityPlayer)
                 {
-                    //					Debug.Log (battle.ActionEntity.Id);
                     //StartCoroutine (changeCharacterFace (battleCtrl.ActionEntity.Id));
                     for (int i = 0; i < playerStats.Length; i++)
                     {
@@ -209,7 +208,6 @@ public class BattleScene : BasicScene
                 actionBtnGrp.SetActive(false);
 
             }
-            //battle.SelectionMode = BattleHandler.SELECTION_NONE;
         }
     }
 
@@ -219,11 +217,7 @@ public class BattleScene : BasicScene
         if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
         {
             battleCtrl.selectPlayer(index);
-            if (battleCtrl.selectionMode == BattleCtrl.SELECTION_ITEM)
-            {
-                battleCtrl.useSelectedSpecial();
-            }
-            else if (battleCtrl.selectionMode == BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER)
+            if (battleCtrl.selectionMode == BattleCtrl.SELECTION_ITEM || battleCtrl.selectionMode == BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER)
             {
                 battleCtrl.useSelectedSpecial();
             }
@@ -370,7 +364,7 @@ public class BattleScene : BasicScene
         switch (id)
         {
             case 0: //Back to Main Menu
-                Game.currLoc.resetZoneStatus();
+                Game.currLoc.ResetZoneStatus();
                 Game.state = Game.State.FreeRoam;
                 SceneManager.LoadScene("World");
                 break;
@@ -392,7 +386,7 @@ public class BattleScene : BasicScene
             case 2:// Next Battle
                 if (battleCtrl.bossFight)
                 {
-                    Game.currLoc.resetZoneStatus();
+                    Game.currLoc.ResetZoneStatus();
                     // if (pd != null)
                     // {
                     //     Debug.Log("Plot found, pt=" + pd.triggerPt + ", area=" + pd.triggerArea + ",before battle=" + pd.triggerBeforeBattle);
@@ -412,7 +406,7 @@ public class BattleScene : BasicScene
                 // }
                 else
                 {
-                    Game.currLoc.progressZone();
+                    Game.currLoc.ProgressZone();
                     // if (pd != null)
                     // {
                     //     Debug.Log("Plot found, pt=" + pd.triggerPt + ", area=" + pd.triggerArea + ",before battle=" + pd.triggerBeforeBattle);
@@ -432,9 +426,8 @@ public class BattleScene : BasicScene
     }
     }
 
-    public void createFloatingText(List<BattleMessage> bundle)
+    public void CreateBattleAnimation(List<BattleMessage> bundle)
     {
-        //Debug.Log("bundle=" + bundle.Count);
         Transform trans = null;
         if (bundle != null && bundle.Count > 0)
         {
@@ -442,7 +435,6 @@ public class BattleScene : BasicScene
             {
                 if ((message.sender is EntityPlayer && message.isAttackMessage()) || (message.sender is EntityEnemy && !message.isAttackMessage()))
                 {
-                    //Debug.Log("message.receiver.Id=" + message.receiver.Id + "enemyImg.Lengt=" + enemyImg.Length);
                     if (battleCtrl.bossFight || Game.rareEnemyAppeared)
                     {
                         trans = bossStat.transform;
@@ -457,12 +449,8 @@ public class BattleScene : BasicScene
                 {
                     trans = playerStats[message.receiver.id].transform;
                 }
-                //Debug.Log("transfor" + transform.ToString());
                 GetComponent<BattleAnimator>().CreateDamageText(message, trans);
-
             }
-
-
 
             if ((bundle[0].AOE && bundle[0].sender is EntityPlayer && bundle[0].isAttackMessage()) || (bundle[0].AOE && bundle[0].sender is EntityEnemy && !bundle[0].isAttackMessage()))
             {

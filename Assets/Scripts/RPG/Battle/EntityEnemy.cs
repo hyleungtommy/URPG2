@@ -85,7 +85,7 @@ namespace RPG
 			Debug.Log ("e taske action");
 			*/
             bundle = UseNormalAttack();
-            scene.createFloatingText(bundle);
+            scene.CreateBattleAnimation(bundle);
         }
 
         public override void OnReceiveDamage(Entity attacker, float damage)

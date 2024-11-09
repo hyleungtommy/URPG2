@@ -22,7 +22,7 @@ namespace RPG
         {
             List<BattleMessage> bundle = functionable.Use(this, opponent);
             curratb = 0;
-            scene.createFloatingText(bundle);
+            scene.CreateBattleAnimation(bundle);
         }
 
         public override void PassRound()

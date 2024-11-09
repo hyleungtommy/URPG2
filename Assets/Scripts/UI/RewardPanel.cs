@@ -70,7 +70,7 @@ public class RewardPanel : MonoBehaviour
             //         enemyDropDisplays[i].render(drops[i].item);
             //     }
             // }
-            if(Game.currentMapMode == Constant.MapModeProgressive && Game.currLoc.currZone == Game.currLoc.maxZone){
+            if(Game.currentMapMode == Game.MapMode.Progression && Game.currLoc.currZone == Game.currLoc.maxZone){
                 platinumCoinGain.gameObject.SetActive(true);
                 platinumCoinGainText.text = Game.currLoc.platinumCoinGain.ToString();
             }else{
@@ -90,8 +90,8 @@ public class RewardPanel : MonoBehaviour
             //     enemyDropDisplays[i].gameObject.SetActive(false);
             // }
         }
-        btnRebattle.gameObject.SetActive(Game.currentMapMode == Constant.MapModeExplore);
-        btnNextArea.gameObject.SetActive((Game.currentMapMode == Constant.MapModeProgressive || Game.currentMapMode == Constant.MapModeDungeon) 
+        btnRebattle.gameObject.SetActive(Game.currentMapMode == Game.MapMode.Explore);
+        btnNextArea.gameObject.SetActive((Game.currentMapMode == Game.MapMode.Progression || Game.currentMapMode == Game.MapMode.Dungeon) 
                                         && battleCtrl.battleState == BattleCtrl.PLAYER_WIN);
 
     }

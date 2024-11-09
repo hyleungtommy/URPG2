@@ -9,11 +9,14 @@ public static class Game
     public static Map currLoc;
     public static int difficulty;
     public static bool rareEnemyAppeared;
-    public static int currentMapMode;
+    public static MapMode currentMapMode;
     public static int money;
     public static int platinumCoin;
     public enum State{
         FreeRoam, Dialog, Battle
+    }
+    public enum MapMode{
+        Progression, Explore, Dungeon
     }
     
 

@@ -22,16 +22,16 @@ public class MapScene : MonoBehaviour
     }
 
     public void OnClickExploreMode(){
-        Game.currLoc = map;
-        Game.currentMapMode = Constant.MapModeExplore;
-        Game.state = Game.State.Battle;
-        UIController.Instance.HideAllPanel();
-        SceneManager.LoadScene("Battle");
+        LoadBattleScene(Game.MapMode.Explore);
     }
 
     public void OnClickProgressiveMode(){
+        LoadBattleScene(Game.MapMode.Progression);
+    }
+
+    private void LoadBattleScene(Game.MapMode mapMode){
         Game.currLoc = map;
-        Game.currentMapMode = Constant.MapModeProgressive;
+        Game.currentMapMode = mapMode;
         Game.state = Game.State.Battle;
         UIController.Instance.HideAllPanel();
         SceneManager.LoadScene("Battle");

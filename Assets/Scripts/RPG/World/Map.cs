@@ -28,7 +28,7 @@ namespace RPG
         /// Generate enemies for next zone, according to which zone player is in
         /// </summary>
         /// <returns>a list of up to 5 Entity Enemy</returns>
-        public EntityEnemy[] generateEnemy()
+        public EntityEnemy[] GenerateEnemy()
         {
             List<EntityEnemy> generatedEnemyList = new List<EntityEnemy>();
             //if player is in last zone, generate boss enemy
@@ -39,7 +39,7 @@ namespace RPG
             else
             {
                 //determine if a rare enemy will be generated
-                int rndRareEnemy = UnityEngine.Random.Range(0, 100);
+                int rndRareEnemy = Random.Range(0, 100);
                 if (rareEnemy != null && rndRareEnemy <= Param.rareEnemyAppearChance)
                 {
                     Game.rareEnemyAppeared = true;
@@ -48,7 +48,7 @@ namespace RPG
                 else
                 {
                     int maxEnemy = 5;
-                    int enemyNum = UnityEngine.Random.Range(1, maxEnemy);
+                    int enemyNum = Random.Range(1, maxEnemy);
                     float mapEnemyModifier = (currZone - 1) * 0.02f;
                     if (mapEnemyModifier > Param.maxMapEnemyModifier)
                     {
@@ -79,9 +79,9 @@ namespace RPG
         /// <summary>
         /// Move to the next zone
         /// </summary>
-        public void progressZone()
+        public void ProgressZone()
         {
-            if (Game.currentMapMode == Constant.MapModeProgressive)
+            if (Game.currentMapMode == Game.MapMode.Progression)
             {
                 if (currZone < maxZone)
                 {
@@ -94,9 +94,9 @@ namespace RPG
         /// <summary>
         /// When player reached last zone or leave during progression, move them back to first zone or the last 5th zone
         /// </summary>
-        public void resetZoneStatus()
+        public void ResetZoneStatus()
         {
-            if (Game.currentMapMode == Constant.MapModeProgressive)
+            if (Game.currentMapMode == Game.MapMode.Progression)
             {
                 if (currZone == maxZone)
                 {

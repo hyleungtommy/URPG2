@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RPG
 {
@@ -13,7 +12,18 @@ namespace RPG
         public EntityPlayer[] playerParty { get; set; }
         private BattleScene scene;
         public int battleState { get; set; }
-
+        public enum BattleState{
+            BattleRunning, EnemyTurn, PlayerTurn, PlayerWin, EnemyWin
+        }
+        public enum Friction{
+            Player,Enemy
+        }
+        public enum Selection{
+            None,Attack,Item,SkillUseOnOpponent,SkillUseOnPartner,SkillPending
+        }
+        public enum Action{
+            Attack, Item, Skill
+        }
         public const int BATTLE_RUNNING = 0;
         public const int ENEMY_TURN = 2;
         public const int PLAYER_TURN = 1;
@@ -121,7 +131,7 @@ namespace RPG
                             {
                                 battleState = PLAYER_TURN;
                                 scene.onPlayerTurn();
-                                scene.setTopBar(actionEntity.name, actionEntity.img);
+                                scene.SetTopBarData(actionEntity.name, actionEntity.img);
                             }
                             else
                             {
@@ -190,7 +200,7 @@ namespace RPG
                     if (actionType == ACTION_ATTACK)
                     {
                         List<BattleMessage> bundle = actionEntity.UseNormalAttack();
-                        scene.createFloatingText(bundle);
+                        scene.CreateBattleAnimation(bundle);
                     }
                     else if (actionType == ACTION_ITEM || actionType == ACTION_SKILL)
                     {
