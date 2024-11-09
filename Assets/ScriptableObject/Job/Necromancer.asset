@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f037f919225ebc94aa9b402822a0ddcc, type: 3}
+  m_Name: Necromancer
+  m_EditorClassIdentifier: 
+  JobName: Necromancer
+  id: 6
+  startingStat: 0a0000000a000000320000000f0000000f000000
+  levelUpGain: 0100000001000000090000000200000002000000
+  autoAllocateSchedule: 0100000000000000020000000100000001000000

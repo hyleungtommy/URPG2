@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6022940774af04197f87520ff2b9bf, type: 3}
+  m_Name: Ivan
+  m_EditorClassIdentifier: 
+  id: 4
+  characterName: Ivan
+  startLv: 25
+  unlockAtStart: 1
+  bodyImg: {fileID: 21300000, guid: 64cbcf64c3185c74eb5d1ca2e1537b88, type: 3}
+  faceImg: {fileID: 21300000, guid: 1123fda0dba69ee46ad5a2784d1edcd3, type: 3}
+  job: {fileID: 11400000, guid: 65e5c93d9922f8549bb89144bd2e2334, type: 2}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6022940774af04197f87520ff2b9bf, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  id: 1
+  characterName: Tommy
+  startLv: 1
+  unlockAtStart: 1
+  bodyImg: {fileID: 21300000, guid: 42df3f79cde3b234da7df52f5354389e, type: 3}
+  faceImg: {fileID: 21300000, guid: 1c610f9d94d3d3b4a8874936c9a5b11e, type: 3}
+  job: {fileID: 11400000, guid: 5316b74ca0e28524d8e5414391d9adf8, type: 2}
