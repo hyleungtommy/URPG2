@@ -20,15 +20,14 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadSceneAsync(sceneName);
     }
 
-    public void AnimatedTransit(string sceneName){
-        
+    public void AnimatedTransit(Scenes sceneName){
         StartCoroutine(TransitWithAnimation(sceneName));
     }
     
-    IEnumerator TransitWithAnimation(string sceneName){
+    IEnumerator TransitWithAnimation(Scenes sceneName){
         sceneTransitAnimator.SetTrigger("End");
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadSceneAsync(sceneName);
+        SceneLoader.LoadScene(sceneName);
         sceneTransitAnimator.SetTrigger("Start");
     }
 }

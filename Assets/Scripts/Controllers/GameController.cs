@@ -33,27 +33,32 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Game.state == Game.State.Battle){
+        //All Input keys should be assgined here to prevent key conflict
+        if (Game.state == Game.State.Battle) //All keys are disabled on battle
+        {
             return;
         }
-        //All Input keys should be assgined here to prevent key conflict
-        if (Input.GetKeyDown(KeyCode.E))
+        else if (Game.state == Game.State.Dialog)// Only dialog keys can be press during a dialog
         {
-            UIController.Instance.ShowStatus();
-            Game.DisablePlayerControl();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UIController.Instance.HideAllScene();
-            Game.EnablePlayerControl();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Game.state == Game.State.Dialog)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                UIController.Instance.dialogScene.HandleUpdate();
+                SceneLoader.GetSceneObject(Scenes.Dialog)?.GetComponent<DialogScene>().HandleUpdate();
             }
-            else if (Game.state == Game.State.FreeRoam)
+        }
+        else if (Game.state == Game.State.OpenUI)// Can only press escape when opened a UI
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                UIController.Instance.HideAllUI();
+            }
+        }
+        else if (Game.state == Game.State.FreeRoam)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                UIController.Instance.ShowStatus();
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
             {
                 FindObjectOfType<PlayerController>()?.Interact();
             }

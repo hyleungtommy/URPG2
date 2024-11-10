@@ -367,7 +367,7 @@ public class BattleScene : BasicScene
         {
             case 0: //Back to Main Menu
                 Game.currLoc.ResetZoneStatus();
-                Game.state = Game.State.FreeRoam;
+                Game.ChangeGameState(Game.State.FreeRoam);
                 SceneManager.LoadScene("World");
                 break;
             case 1: // Retry Battle
@@ -400,7 +400,7 @@ public class BattleScene : BasicScene
                     // {
                     //     jumpToScene(SceneName.MainMenu);
                     // }
-                    Game.state = Game.State.FreeRoam;
+                    Game.ChangeGameState(Game.State.FreeRoam);
                     SceneManager.LoadScene("World");
                 }
                 // else if(Game.currentMapMode == Constant.MapModeDungeon){

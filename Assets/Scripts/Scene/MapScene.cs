@@ -12,6 +12,13 @@ public class MapScene : MonoBehaviour
     public Text mapDesc;
     public Map map {get; set;}
 
+    public void Awake(){
+        map = SceneParameters.mapData;
+        if(map != null){
+            Render();
+        }
+    }
+
     public void Render(){
         mapName.text = map.name;
         mapImg.sprite = map.bgImg;
@@ -32,8 +39,8 @@ public class MapScene : MonoBehaviour
     private void LoadBattleScene(Game.MapMode mapMode){
         Game.currLoc = map;
         Game.currentMapMode = mapMode;
-        Game.state = Game.State.Battle;
-        UIController.Instance.HideAllScene();
+        Game.ChangeGameState(Game.State.Battle);
+        UIController.Instance.HideAllUI();
         SceneManager.LoadScene("Battle");
     }
 }

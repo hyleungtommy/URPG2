@@ -12,12 +12,9 @@ public class DialogScene : MonoBehaviour
     [SerializeField] GameObject dialogCanvas;
     [SerializeField] Image NPCFace;
     [SerializeField] Text NPCName;
-    public event Action OnShowDialog;
-    public event Action OnHideDialog;
-    public static DialogScene Instance{get; private set;}
 
     private void Awake(){
-        Instance = this;
+        ShowDialog(SceneParameters.npcdata);
     }
 
     Dialog dialog;
@@ -30,10 +27,9 @@ public class DialogScene : MonoBehaviour
 
     public IEnumerator DisplayDialog(NPC npc){
         yield return new WaitForEndOfFrame();
-        OnShowDialog?.Invoke();
         NPCFace.sprite = npc.faceImg;
         NPCName.text = npc.NPCName;
-        this.dialog = npc.dialog;
+        dialog = npc.dialog;
         dialogCanvas.SetActive(true);
         dialogBox.SetActive(true);
         StartCoroutine(TypeDialog(dialog.Lines[0]));
@@ -47,10 +43,9 @@ public class DialogScene : MonoBehaviour
             if(currentLine < dialog.Lines.Count){
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }else{
-                dialogBox.SetActive(false);
-                dialogCanvas.SetActive(false);
+                SceneLoader.UnloadUIScene(Scenes.Dialog);
                 currentLine = 0;
-                OnHideDialog?.Invoke();
+                Game.ChangeGameState(Game.State.FreeRoam);
             }
         }
     }

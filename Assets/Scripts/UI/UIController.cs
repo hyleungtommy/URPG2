@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using RPG;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
-    public StatusScene statusScene;
     public MapScene mapScene;
     public DialogScene dialogScene;
     public static UIController Instance;
@@ -18,35 +18,26 @@ public class UIController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        dialogScene.OnShowDialog += Game.DisablePlayerControl;
-        dialogScene.OnHideDialog += Game.EnablePlayerControl;
-    }
-
-    void Destroy()
-    {
-        dialogScene.OnShowDialog -= Game.DisablePlayerControl;
-        dialogScene.OnHideDialog -= Game.EnablePlayerControl;
-    }
-
     public void ShowDialog(NPC npcdata){
-        dialogScene.gameObject.SetActive(true);
-        dialogScene.ShowDialog(npcdata);
+        SceneParameters.npcdata = npcdata;
+        Game.ChangeGameState(Game.State.Dialog);
+        SceneLoader.LoadUIScene(Scenes.Dialog);
     }
 
     public void ShowStatus(){
-        statusScene.gameObject.SetActive(true);
+        Game.ChangeGameState(Game.State.OpenUI);
+        SceneLoader.LoadUIScene(Scenes.Status);
     }
 
     public void ShowMap(Map _map){
-        mapScene.gameObject.SetActive(true);
-        mapScene.map = _map;
-        mapScene.Render();
+        SceneParameters.mapData = _map;
+        Game.ChangeGameState(Game.State.OpenUI);
+        SceneLoader.LoadUIScene(Scenes.Map);
     }
 
-    public void HideAllScene(){
-        statusScene.gameObject.SetActive(false);
-        mapScene.gameObject.SetActive(false);
+    public void HideAllUI(){
+        SceneLoader.UnloadUIScene(Scenes.Status);
+        SceneLoader.UnloadUIScene(Scenes.Map);
+        Game.ChangeGameState(Game.State.FreeRoam);
     }
 }

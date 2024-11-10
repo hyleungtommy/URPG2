@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(Game.state == Game.State.Dialog){
+        if(Game.state == Game.State.Dialog || Game.state == Game.State.OpenUI){
             return;
         }
         if (!isMoving)
