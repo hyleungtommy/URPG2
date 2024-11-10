@@ -6,15 +6,30 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
-    public MapScene mapScene;
-    public DialogScene dialogScene;
     public static UIController Instance;
+    public Text fpsText;
+    private float deltaTime = 0.0f;
     void Awake(){
         if(Instance == null){
             Instance = this;
+            StartCoroutine(UpdateFPS());
             DontDestroyOnLoad(gameObject);
         }else{
             Destroy(gameObject);
+        }
+    }
+
+    void Update(){
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+    }
+
+    private IEnumerator UpdateFPS()
+    {
+        while (true)
+        {
+            float fps = 1.0f / deltaTime;
+            fpsText.text = $"FPS: {fps:0.}";
+            yield return new WaitForSeconds(0.5f); // Update every 0.5 seconds
         }
     }
 
