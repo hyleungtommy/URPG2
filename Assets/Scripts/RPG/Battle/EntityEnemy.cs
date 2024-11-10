@@ -94,7 +94,7 @@ namespace RPG
             hateMeter[attacker.id] += Mathf.Log10(damage);
         }
 
-        public void setupHateMeter(Entity[] players)
+        public void SetupHateMeter(Entity[] players)
         {
             this.players = players;
             hateMeter = new float[players.Length];
@@ -102,7 +102,7 @@ namespace RPG
                 hateMeter[i] = 0f;
         }
 
-        public void decoy(EntityPlayer player, int decoyValue)
+        public void Decoy(EntityPlayer player, int decoyValue)
         {
             for (int i = 0; i < hateMeter.Length; i++)
             {

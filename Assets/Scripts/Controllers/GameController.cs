@@ -44,14 +44,14 @@ public class GameController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            UIController.Instance.HideAllPanel();
+            UIController.Instance.HideAllScene();
             Game.EnablePlayerControl();
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             if (Game.state == Game.State.Dialog)
             {
-                UIController.Instance.dialog.HandleUpdate();
+                UIController.Instance.dialogScene.HandleUpdate();
             }
             else if (Game.state == Game.State.FreeRoam)
             {

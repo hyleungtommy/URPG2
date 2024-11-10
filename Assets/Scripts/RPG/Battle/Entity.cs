@@ -171,9 +171,6 @@ namespace RPG
             }
             curratb = 0;
 
-
-            //Debug.Log (msgs.Count);
-
             return msgs;
         }
 

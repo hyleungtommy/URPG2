@@ -12,16 +12,20 @@ namespace RPG
         public EntityPlayer[] playerParty { get; set; }
         private BattleScene scene;
         public BattleState battleState { get; set; }
-        public enum BattleState{
+        public enum BattleState
+        {
             BattleRunning, EnemyTurn, PlayerTurn, PlayerWin, EnemyWin
         }
-        public enum Friction{
-            Player,Enemy
+        public enum Friction
+        {
+            Player, Enemy
         }
-        public enum Selection{
-            None,Attack,Item,SkillUseOnOpponent,SkillUseOnPartner,SkillPending
+        public enum Selection
+        {
+            None, Attack, Item, SkillUseOnOpponent, SkillUseOnPartner, SkillPending
         }
-        public enum Action{
+        public enum Action
+        {
             Attack, Item, Skill
         }
         private Queue<Entity> actionQueue = new Queue<Entity>();
@@ -42,7 +46,7 @@ namespace RPG
             {
                 enemyParty[i].id = i;
                 enemyParty[i].SetOpponent(playerParty);
-                enemyParty[i].setupHateMeter(playerParty);
+                enemyParty[i].SetupHateMeter(playerParty);
                 enemyParty[i].scene = scene;
             }
             for (int i = 0; i < playerParty.Length; i++)
@@ -70,19 +74,12 @@ namespace RPG
             //virtualInventory = Game.inventory.CreateVirtualItemInv();
             battleState = BattleState.BattleRunning;
         }
-        private Entity getFriction(Friction friction, int index)
+        private Entity GetFriction(Friction friction, int index)
         {
-            if (friction == Friction.Enemy)
-            {
-                return enemyParty[index];
-            }
-            else
-            {
-                return playerParty[index];
-            }
+            return friction == Friction.Enemy ? enemyParty[index] as Entity : playerParty[index] as Entity;
         }
 
-        public float getOpponentAverageAGI(Friction friction)
+        public float GetOpponentAverageAGI(Friction friction)
         {
             float avgAGI = 0.0f;
             if (friction == Friction.Enemy)
@@ -91,17 +88,16 @@ namespace RPG
                     avgAGI += enemyParty[i].stat.AGI;
                 return avgAGI / enemyParty.Length;
             }
-            return getFriction(friction, 0).stat.AGI;
+            return GetFriction(friction, 0).stat.AGI;
         }
 
-        public void tick()
+        public void Tick()
         {
             if (battleState == BattleState.BattleRunning)
             {
                 if (actionQueue.Count > 0)
                 {
                     actionEntity = actionQueue.Dequeue();
-                    //Debug.Log("action Entity:" + actionEntity.Name);
                     actionEntity.PassRound();
                     if (actionEntity.currhp > 0)
                     {
@@ -111,18 +107,18 @@ namespace RPG
                         // }
                         // else
                         // {
-                            if (actionEntity is EntityPlayer)
-                            {
-                                battleState = BattleState.PlayerTurn;
-                                scene.onPlayerTurn();
-                                scene.SetTopBarData(actionEntity.name, actionEntity.img);
-                            }
-                            else
-                            {
-                                battleState = BattleState.EnemyTurn;
-                                actionEntity.TakeAction(null);
-                                battleState = BattleState.BattleRunning;
-                            }
+                        if (actionEntity is EntityPlayer)
+                        {
+                            battleState = BattleState.PlayerTurn;
+                            scene.OnPlayerTurn();
+                            scene.SetTopBarData(actionEntity.name, actionEntity.img);
+                        }
+                        else
+                        {
+                            battleState = BattleState.EnemyTurn;
+                            actionEntity.TakeAction(null);
+                            battleState = BattleState.BattleRunning;
+                        }
                         // }
                     }
                 }
@@ -130,20 +126,20 @@ namespace RPG
                 {
                     foreach (EntityPlayer player in playerParty)
                     {
-                        if (player != null && player.Tick(getOpponentAverageAGI(Friction.Enemy)))
+                        if (player != null && player.Tick(GetOpponentAverageAGI(Friction.Enemy)))
                             actionQueue.Enqueue(player);
                     }
                     foreach (EntityEnemy enemy in enemyParty)
                     {
-                        if (enemy != null && enemy.Tick(getOpponentAverageAGI(Friction.Player)))
+                        if (enemy != null && enemy.Tick(GetOpponentAverageAGI(Friction.Player)))
                             actionQueue.Enqueue(enemy);
                     }
                 }
-                updateBattleState();
+                UpdateBattleState();
             }
         }
 
-        public void updateBattleState()
+        public void UpdateBattleState()
         {
             if (DoesPartyLost(Friction.Player))
             {
@@ -157,22 +153,21 @@ namespace RPG
             }
             if (playerSelectedEntity != null)
             {
-                for (int i = 0; i < playerSelectedEntity.Length; i++)
+                foreach (Entity enemy in playerSelectedEntity)
                 {
-                    if (playerSelectedEntity[i].currhp <= 0 && playerSelectedEntity[i] is EntityEnemy){}
-                        scene.onEnemyDefeated(playerSelectedEntity[i].id);
+                    if (enemy.currhp <= 0 && enemy is EntityEnemy)
+                        scene.RemoveEnemyObject(enemy.id);
                 }
-
                 playerSelectedEntity = null;
             }
         }
 
-        public void playerUseNormalAttack()
+        public void PlayerUseNormalAttack()
         {
-            playerTakeAction(Action.Attack, null);
+            PlayerTakeAction(Action.Attack, null);
         }
 
-        private void playerTakeAction(Action actionType, IFunctionable functionable)
+        private void PlayerTakeAction(Action actionType, IFunctionable functionable)
         {
 
             if (battleState == BattleState.PlayerTurn)
@@ -202,13 +197,13 @@ namespace RPG
             }
         }
 
-        public void onSelectItem(int itemId)
+        public void SelectItem(int itemId)
         {
             selectedItemId = itemId;
             battleState = BattleState.PlayerTurn;
         }
 
-        public void useSelectedSpecial()
+        public void UseSelectedSpecial()
         {
             // if (selectionMode == SELECTION_ITEM)
             // {
@@ -262,46 +257,17 @@ namespace RPG
 
         private bool DoesPartyLost(Friction friction)
         {
-            int hp0Counter = 0;
-            if (friction == Friction.Enemy)
-            {
-                foreach (EntityEnemy e in enemyParty)
-                {
-                    if (e != null && e.currhp <= 0 || e == null)
-                    {
-                        hp0Counter++;
-                    }
-                }
-
-                return hp0Counter == enemyParty.Length;
-            }
-            else
-            {
-                foreach (EntityPlayer e in playerParty)
-                {
-                    if (e != null && e.currhp <= 0 || e == null)
-                    {
-                        hp0Counter++;
-                    }
-                }
-
-                return hp0Counter == playerParty.Length;
-            }
+            return friction == Friction.Enemy ? GetAllLivingEnemy().Length == 0: GetAllLivingPlayer().Length == 0;
         }
 
-        public void selectEnemy(int i)
+        public void SelectEnemy(int i)
         {
-            playerSelectedEntity = new Entity[1];
-            //if (bossFight && i == 5)
-            //    playerSelectedEntity[0] = enemyParty[0];
-            //else
-            playerSelectedEntity[0] = enemyParty[i];
+            playerSelectedEntity = new Entity[1] { enemyParty[i] };
         }
 
-        public void selectPlayer(int i)
+        public void SelectPlayer(int i)
         {
-            playerSelectedEntity = new Entity[1];
-            playerSelectedEntity[0] = playerParty[i];
+            playerSelectedEntity = new Entity[1] { playerParty[i] };
         }
 
 
@@ -311,15 +277,14 @@ namespace RPG
             //List<ItemAndQty> drops = new List<ItemAndQty>();
             if (battleState == BattleState.PlayerWin)
             {
-                Game.money += getTotalMoneyGain();
-                //RPGSystem.questManager.updateQuest(enemyParty);
+                Game.money += GetTotalMoneyGain();
                 levelUps = new bool[] { false, false, false, false };
                 int i = 0;
                 foreach (BattleCharacter c in GameController.Instance.party.GetAllBattleCharacter())
                 {
                     if (c != null)
                     {
-                        levelUps[i] = c.assignEXP(getTotalEXPGain());
+                        levelUps[i] = c.assignEXP(GetTotalEXPGain());
                     }
                     i++;
                 }
@@ -340,9 +305,10 @@ namespace RPG
 
         }
 
-        public int getTotalEXPGain()
+        public int GetTotalEXPGain()
         {
-
+            // level penality = (highest lv in party - map max lv) * 0.1
+            const float miniumLevelPanality = 0.1f;
             int maxLvInBattleParty = 0;
             foreach (BattleCharacter c in GameController.Instance.party.GetAllBattleCharacter())
             {
@@ -356,23 +322,32 @@ namespace RPG
             {
                 levelPanality -= (maxLvInBattleParty - Game.currLoc.maxLv) * 0.1f;
             }
-            if (levelPanality < 0.1f)
-                levelPanality = 0.1f;
-            //Debug.Log(levelPanality);
-            int totalEXP = 0;
-            for (int i = 0; i < enemyParty.Length; i++)
-                totalEXP += Mathf.FloorToInt((enemyParty[i] as EntityEnemy).dropEXP * levelPanality * Param.expRatio * (1 + Game.currLoc.currZone * Param.areaRewardMultiplier));// * Game.globalBuffManager.GetModFromType("EXP"));
-            //Debug.Log("getTotalEXPGain() =" + totalEXP);
+            if (levelPanality < miniumLevelPanality){
+                levelPanality = miniumLevelPanality;
+            }
             
+            int totalEXP = 0;
+            float zoneMultiplier = 1 + Game.currLoc.currZone * Param.areaRewardMultiplier;
+            //float globalMultiplier = Game.globalBuffManager.GetModFromType("EXP");
+            float finalMultiplier = zoneMultiplier * levelPanality * Param.expRatio;// * globalMultiplier
+            foreach (EntityEnemy enemy in enemyParty){
+                totalEXP += Mathf.FloorToInt(enemy.dropMoney * finalMultiplier);
+            }
+
             return totalEXP;
         }
 
-        public int getTotalMoneyGain()
+        public int GetTotalMoneyGain()
         {
             int totalMoney = 0;
-            for (int i = 0; i < enemyParty.Length; i++)
-                totalMoney += Mathf.FloorToInt((enemyParty[i] as EntityEnemy).dropMoney * (1 + Game.currLoc.currZone * Param.areaRewardMultiplier)); //* Game.globalBuffManager.GetModFromType("ItemDrop"));
-            //Debug.Log ("getTotalMoneyGain() =" + totalMoney);
+            float zoneMultiplier = 1 + Game.currLoc.currZone * Param.areaRewardMultiplier;
+            //float globalMultiplier = Game.globalBuffManager.GetModFromType("ItemDrop");
+            float finalMultiplier = zoneMultiplier;// * globalBuffMultiplier;
+
+            foreach (EntityEnemy enemy in enemyParty){
+                totalMoney += Mathf.FloorToInt(enemy.dropMoney * finalMultiplier);
+            }
+
             return totalMoney;
         }
 
@@ -406,18 +381,18 @@ namespace RPG
         //     return drops;
         // }
 
-        public void skipBattle()
+        public void SkipBattle()
         {
             battleState = BattleState.PlayerWin;
             PostBattleHandler();
         }
 
-        public EntityPlayer[] getAllLivingPlayer()
+        public EntityPlayer[] GetAllLivingPlayer()
         {
             return playerParty.Where(e => e != null && e.currhp > 0).ToArray();
         }
 
-        public EntityEnemy[] getAllLivingEnemy()
+        public EntityEnemy[] GetAllLivingEnemy()
         {
             return enemyParty.Where(e => e != null && e.currhp > 0).ToArray();
         }

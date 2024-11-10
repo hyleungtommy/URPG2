@@ -13,6 +13,10 @@ public class StatusScene: MonoBehaviour
     [SerializeField] Text experienceText;
     [SerializeField] Image bodyImg;
 
+    void Awake(){
+        OnSelectCharacter(0, GameController.Instance.party.GetAllUnlockedCharacter()[0]);
+    }
+
     public void OnClickBox(int id){
         battleMemberList.OnClickBox(id);
         OnSelectCharacter(id, battleMemberList.SelectedCharacter);

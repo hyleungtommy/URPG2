@@ -1264,9 +1264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66912814a6f6f564f85f907b122dd2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 2051568852}
-  map: {fileID: 2016853176}
-  dialog: {fileID: 1518214303}
+  statusScene: {fileID: 2051568853}
+  mapScene: {fileID: 2016853176}
+  dialogScene: {fileID: 1518214303}
 --- !u!4 &327523057
 Transform:
   m_ObjectHideFlags: 0

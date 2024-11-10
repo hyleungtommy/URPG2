@@ -24,7 +24,7 @@ public class BattleScene : BasicScene
     // Start is called before the first frame update
     void Start()
     {
-        prepareBattle();
+        PrepareBattle();
     }
 
     // Update is called once per frame
@@ -33,11 +33,11 @@ public class BattleScene : BasicScene
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("skip battle");
-            battleCtrl.skipBattle();
+            battleCtrl.SkipBattle();
         }
     }
 
-    void prepareBattle()
+    void PrepareBattle()
     {
         // PlotData pd = PlotMatcher.matchPlotBattle(Game.currLoc.currZone, true);
         // if (pd != null)
@@ -49,63 +49,63 @@ public class BattleScene : BasicScene
         // }
         // else
         // {
-            // if(Game.currentMapMode == Constant.MapModeDungeon){
-            //     battleCtrl = new BattleCtrl(Game.currentDungeon.GenerateEnemy(), Game.party.createBattleParty(), this);
-            //     battleBG.sprite = Game.currentDungeon.battleImg;
-            // }else{
-                battleCtrl = new BattleCtrl(Game.currLoc.GenerateEnemy(), GameController.Instance.party.CreateBattleParty(), this);
-                battleBG.sprite = Game.currLoc.battleImg;
-            // }
-            
-            if (Game.currentMapMode == Game.MapMode.Progression)
-            {
-                textAreaPanel.text = Game.currLoc.currZone + "/" + Game.currLoc.maxZone;
-            }
-            areaPanel.gameObject.SetActive(Game.currentMapMode == Game.MapMode.Progression);
+        // if(Game.currentMapMode == Constant.MapModeDungeon){
+        //     battleCtrl = new BattleCtrl(Game.currentDungeon.GenerateEnemy(), Game.party.createBattleParty(), this);
+        //     battleBG.sprite = Game.currentDungeon.battleImg;
+        // }else{
+        battleCtrl = new BattleCtrl(Game.currLoc.GenerateEnemy(), GameController.Instance.party.CreateBattleParty(), this);
+        battleBG.sprite = Game.currLoc.battleImg;
+        // }
 
-            if (battleCtrl.bossFight || Game.rareEnemyAppeared)
+        if (Game.currentMapMode == Game.MapMode.Progression)
+        {
+            textAreaPanel.text = Game.currLoc.currZone + "/" + Game.currLoc.maxZone;
+        }
+        areaPanel.gameObject.SetActive(Game.currentMapMode == Game.MapMode.Progression);
+
+        if (battleCtrl.bossFight || Game.rareEnemyAppeared)
+        {
+            bossStat.gameObject.SetActive(true);
+            bossStat.setEntity(battleCtrl.enemyParty[0]);
+            for (int i = 0; i < enemyStats.Length; i++)
             {
-                bossStat.gameObject.SetActive(true);
-                bossStat.setEntity(battleCtrl.enemyParty[0]);
-                for (int i = 0; i < enemyStats.Length; i++)
+                enemyStats[i].gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            bossStat.gameObject.SetActive(false);
+            for (int i = 0; i < enemyStats.Length; i++)
+            {
+                if (i < battleCtrl.enemyParty.Length)
+                {
+                    enemyStats[i].gameObject.SetActive(true);
+                    enemyStats[i].setEntity(battleCtrl.enemyParty[i]);
+                }
+                else
                 {
                     enemyStats[i].gameObject.SetActive(false);
                 }
             }
+        }
+
+        for (int i = 0; i < playerStats.Length; i++)
+        {
+            if (i < battleCtrl.playerParty.Length)
+            {
+                playerStats[i].gameObject.SetActive(true);
+                playerStats[i].setEntity(battleCtrl.playerParty[i]);
+            }
             else
             {
-                bossStat.gameObject.SetActive(false);
-                for (int i = 0; i < enemyStats.Length; i++)
-                {
-                    if (i < battleCtrl.enemyParty.Length)
-                    {
-                        enemyStats[i].gameObject.SetActive(true);
-                        enemyStats[i].setEntity(battleCtrl.enemyParty[i]);
-                    }
-                    else
-                    {
-                        enemyStats[i].gameObject.SetActive(false);
-                    }
-                }
+                playerStats[i].gameObject.SetActive(false);
             }
-
-            for (int i = 0; i < playerStats.Length; i++)
-            {
-                if (i < battleCtrl.playerParty.Length)
-                {
-                    playerStats[i].gameObject.SetActive(true);
-                    playerStats[i].setEntity(battleCtrl.playerParty[i]);
-                }
-                else
-                {
-                    playerStats[i].gameObject.SetActive(false);
-                }
-            }
-            showingRewardPanel = false;
-            rewardPanel.gameObject.SetActive(false);
-            // itemPanel.gameObject.SetActive(false);
-            // skillPanel.gameObject.SetActive(false);
-            StartCoroutine("tick");
+        }
+        showingRewardPanel = false;
+        rewardPanel.gameObject.SetActive(false);
+        // itemPanel.gameObject.SetActive(false);
+        // skillPanel.gameObject.SetActive(false);
+        StartCoroutine("tick");
         //}
 
     }
@@ -118,16 +118,9 @@ public class BattleScene : BasicScene
         }
         else
         {
-            for (int i = 0; i < enemyStats.Length; i++)
-            {
-                enemyStats[i].Render();
-            }
+            RenderFrictionStats(BattleCtrl.Friction.Enemy);
         }
-
-        for (int i = 0; i < playerStats.Length; i++)
-        {
-            playerStats[i].render();
-        }
+        RenderFrictionStats(BattleCtrl.Friction.Player);
     }
 
     IEnumerator tick()
@@ -135,7 +128,7 @@ public class BattleScene : BasicScene
         while (battleCtrl.battleState == BattleCtrl.BattleState.BattleRunning || battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
             if (battleCtrl.battleState == BattleCtrl.BattleState.BattleRunning)
-                battleCtrl.tick();
+                battleCtrl.Tick();
             RenderEntityStats();
             yield return new WaitForSeconds(0.05f);
         }
@@ -146,14 +139,14 @@ public class BattleScene : BasicScene
         topBarText.text = name + " : Please choose action";
     }
 
-    public void onPlayerTurn()
+    public void OnPlayerTurn()
     {
         battleCtrl.selectionMode = BattleCtrl.Selection.None;
         actionBtnGrp.SetActive(true);
         topBar.gameObject.SetActive(true);
     }
 
-    public void onEnemyDefeated(int index)
+    public void RemoveEnemyObject(int index)
     {
         if (battleCtrl.bossFight || Game.rareEnemyAppeared)
         {
@@ -170,10 +163,10 @@ public class BattleScene : BasicScene
     {
         if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
-            battleCtrl.selectEnemy(index);
+            battleCtrl.SelectEnemy(index);
             if (battleCtrl.selectionMode == BattleCtrl.Selection.Attack)
             {
-                battleCtrl.playerUseNormalAttack();
+                battleCtrl.PlayerUseNormalAttack();
                 if (battleCtrl.actionEntity != null && battleCtrl.actionEntity is EntityPlayer)
                 {
                     //StartCoroutine(changeCharacterFace(battleCtrl.ActionEntity.Id));
@@ -184,10 +177,7 @@ public class BattleScene : BasicScene
                     }
                     else
                     {
-                        for (int i = 0; i < enemyStats.Length; i++)
-                        {
-                            enemyStats[i].Render();
-                        }
+                        RenderFrictionStats(BattleCtrl.Friction.Enemy);
                     }
 
                 }
@@ -196,14 +186,11 @@ public class BattleScene : BasicScene
             else if (battleCtrl.selectionMode == BattleCtrl.Selection.SkillUseOnOpponent)
             {
 
-                battleCtrl.useSelectedSpecial();
+                battleCtrl.UseSelectedSpecial();
                 if (battleCtrl.actionEntity != null && battleCtrl.actionEntity is EntityPlayer)
                 {
                     //StartCoroutine (changeCharacterFace (battleCtrl.ActionEntity.Id));
-                    for (int i = 0; i < playerStats.Length; i++)
-                    {
-                        playerStats[i].render();
-                    }
+                    RenderFrictionStats(BattleCtrl.Friction.Player);
                 }
                 actionBtnGrp.SetActive(false);
 
@@ -216,10 +203,10 @@ public class BattleScene : BasicScene
         // when a party member is selected (by either using Item or Skill on Player Party)
         if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
         {
-            battleCtrl.selectPlayer(index);
+            battleCtrl.SelectPlayer(index);
             if (battleCtrl.selectionMode == BattleCtrl.Selection.Item || battleCtrl.selectionMode == BattleCtrl.Selection.SkillUseOnPartner)
             {
-                battleCtrl.useSelectedSpecial();
+                battleCtrl.UseSelectedSpecial();
             }
         }
 
@@ -337,9 +324,24 @@ public class BattleScene : BasicScene
         }
         else
         {
-            for (int i = 0; i < enemyStats.Length; i++)
+            RenderFrictionStats(BattleCtrl.Friction.Enemy);
+        }
+    }
+
+    private void RenderFrictionStats(BattleCtrl.Friction friction)
+    {
+        if (friction == BattleCtrl.Friction.Player)
+        {
+            foreach (CharacterStatController characterStat in playerStats)
             {
-                enemyStats[i].Render();
+                characterStat.render();
+            }
+        }
+        else
+        {
+            foreach (EnemyStatController enemyStat in enemyStats)
+            {
+                enemyStat.Render();
             }
         }
     }
@@ -380,7 +382,7 @@ public class BattleScene : BasicScene
                 // {
                 //     prepareBattle();
                 // }
-                prepareBattle();
+                PrepareBattle();
 
                 break;
             case 2:// Next Battle
@@ -418,12 +420,12 @@ public class BattleScene : BasicScene
                     // {
                     //     prepareBattle();
                     // }
-                    prepareBattle();
+                    PrepareBattle();
                 }
                 break;
 
-        // }
-    }
+                // }
+        }
     }
 
     public void CreateBattleAnimation(List<BattleMessage> bundle)
@@ -433,7 +435,8 @@ public class BattleScene : BasicScene
         {
             foreach (BattleMessage message in bundle)
             {
-                if ((message.sender is EntityPlayer && message.isAttackMessage()) || (message.sender is EntityEnemy && !message.isAttackMessage()))
+                bool isEnemyMessage = (message.sender is EntityPlayer && message.isAttackMessage()) || (message.sender is EntityEnemy && !message.isAttackMessage());
+                if (isEnemyMessage)
                 {
                     if (battleCtrl.bossFight || Game.rareEnemyAppeared)
                     {
@@ -452,7 +455,9 @@ public class BattleScene : BasicScene
                 GetComponent<BattleAnimator>().CreateDamageText(message, trans);
             }
 
-            if ((bundle[0].AOE && bundle[0].sender is EntityPlayer && bundle[0].isAttackMessage()) || (bundle[0].AOE && bundle[0].sender is EntityEnemy && !bundle[0].isAttackMessage()))
+            bool isEnemyAOEMessage = (bundle[0].AOE && bundle[0].sender is EntityPlayer && bundle[0].isAttackMessage()) || (bundle[0].AOE && bundle[0].sender is EntityEnemy && !bundle[0].isAttackMessage());
+            bool isPlayerAOEMessage = (bundle[0].AOE && bundle[0].sender is EntityEnemy && bundle[0].isAttackMessage()) || (bundle[0].AOE && bundle[0].sender is EntityPlayer && !bundle[0].isAttackMessage());
+            if (isEnemyAOEMessage)
             {
                 if (battleCtrl.bossFight || Game.rareEnemyAppeared)
                 {
@@ -468,7 +473,7 @@ public class BattleScene : BasicScene
                 }
 
             }
-            else if ((bundle[0].AOE && bundle[0].sender is EntityEnemy && bundle[0].isAttackMessage()) || (bundle[0].AOE && bundle[0].sender is EntityPlayer && !bundle[0].isAttackMessage()))
+            else if (isPlayerAOEMessage)
             {
                 for (int j = 0; j < playerStats.Length; j++)
                 {

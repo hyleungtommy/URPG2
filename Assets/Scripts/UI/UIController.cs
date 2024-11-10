@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
-    public GameObject status;
-    public MapScene map;
-    public DialogController dialog;
+    public StatusScene statusScene;
+    public MapScene mapScene;
+    public DialogScene dialogScene;
     public static UIController Instance;
     void Awake(){
         if(Instance == null){
@@ -20,33 +20,33 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        dialog.OnShowDialog += Game.DisablePlayerControl;
-        dialog.OnHideDialog += Game.EnablePlayerControl;
+        dialogScene.OnShowDialog += Game.DisablePlayerControl;
+        dialogScene.OnHideDialog += Game.EnablePlayerControl;
     }
 
     void Destroy()
     {
-        dialog.OnShowDialog -= Game.DisablePlayerControl;
-        dialog.OnHideDialog -= Game.EnablePlayerControl;
+        dialogScene.OnShowDialog -= Game.DisablePlayerControl;
+        dialogScene.OnHideDialog -= Game.EnablePlayerControl;
     }
 
     public void ShowDialog(NPC npcdata){
-        dialog.gameObject.SetActive(true);
-        dialog.ShowDialog(npcdata);
+        dialogScene.gameObject.SetActive(true);
+        dialogScene.ShowDialog(npcdata);
     }
 
     public void ShowStatus(){
-        status.gameObject.SetActive(true);
+        statusScene.gameObject.SetActive(true);
     }
 
     public void ShowMap(Map _map){
-        map.gameObject.SetActive(true);
-        map.map = _map;
-        map.Render();
+        mapScene.gameObject.SetActive(true);
+        mapScene.map = _map;
+        mapScene.Render();
     }
 
-    public void HideAllPanel(){
-        status.gameObject.SetActive(false);
-        map.gameObject.SetActive(false);
+    public void HideAllScene(){
+        statusScene.gameObject.SetActive(false);
+        mapScene.gameObject.SetActive(false);
     }
 }

@@ -33,7 +33,7 @@ public class MapScene : MonoBehaviour
         Game.currLoc = map;
         Game.currentMapMode = mapMode;
         Game.state = Game.State.Battle;
-        UIController.Instance.HideAllPanel();
+        UIController.Instance.HideAllScene();
         SceneManager.LoadScene("Battle");
     }
 }

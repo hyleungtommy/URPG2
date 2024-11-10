@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogController : MonoBehaviour
+public class DialogScene : MonoBehaviour
 {
     [SerializeField] GameObject dialogBox;
     [SerializeField] Text dialogText;
@@ -14,7 +14,7 @@ public class DialogController : MonoBehaviour
     [SerializeField] Text NPCName;
     public event Action OnShowDialog;
     public event Action OnHideDialog;
-    public static DialogController Instance{get; private set;}
+    public static DialogScene Instance{get; private set;}
 
     private void Awake(){
         Instance = this;
