@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using RPG;
 
-public class BasicLargeBox : MonoBehaviour
+public class BasicLargeBox : MonoBehaviour, IRenderable
 {
     // Start is called before the first frame update
     public BasicBox innerBox;

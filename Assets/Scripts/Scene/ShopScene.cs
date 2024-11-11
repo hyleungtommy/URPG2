@@ -5,11 +5,9 @@ using UnityEngine.UI;
 using RPG;
 using System.Linq;
 
-public class ShopScene : BasicScene
+public class ShopScene : ListScene
 {
-    public GameObject infoBox;
     public GameObject scrollViewContent;
-    public GameObject boxPrefab;
     List<Item> shopList;
     public Text textSum;
     public Text textBuyQty;
@@ -23,35 +21,17 @@ public class ShopScene : BasicScene
     void Awake()
     {
         shopList = DBManager.Instance.Items.Where(item => item.buyPlace == BuyPlace.Shop).ToList();
-        int noOfBox = shopList.Count;
-        Transform contentTran = scrollViewContent.transform;
-        GameObject box;
-        for (int i = 0; i < noOfBox; i++)
-        {
-            int j = i;
-            box = (GameObject)Instantiate(boxPrefab, contentTran);
-            ShopBox boxCtrl = box.GetComponent<ShopBox>();
-            boxCtrl.Render(shopList[i]);
-            box.GetComponent<Button>().onClick.AddListener(() => this.OnClickItem(j));
-        }
         buyQty = 1;
-        infoBox.gameObject.SetActive(false);
         money.text = Game.money.ToString();
+        RenderContentView<ShopBox>(shopList.ConvertAll<IDisplayable>(d => d));
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnClickInfoBox(IDisplayable item)
     {
-
-    }
-
-    public void OnClickItem(int slotId)
-    {
-        this.selectedSlotId = slotId;
-        infoBox.gameObject.SetActive(true);
-        Item item = shopList[slotId];
-        itemName.text = item.itemName;
-        itemDesc.text = item.Type.ToString() + "\n\n" + item.desc.ToString();
+        base.OnClickInfoBox(item);
+        Item displayItem = item as Item;
+        itemName.text = displayItem.itemName;
+        itemDesc.text = displayItem.Type.ToString() + "\n\n" + displayItem.desc.ToString();
         ChangeBuyQty(0);
     }
 
@@ -61,34 +41,27 @@ public class ShopScene : BasicScene
         if (this.buyQty < 1) this.buyQty = 1;
         if (this.buyQty > 99) this.buyQty = 99;
         
-        textSum.text = calculateSum().ToString();
+        textSum.text = CalculateSum().ToString();
         textBuyQty.text = this.buyQty.ToString();
-        btnBuy.enabled = canBuy();
+        btnBuy.enabled = CanBuy();
     }
 
-    public int calculateSum()
+    public int CalculateSum()
     {
-        return shopList[selectedSlotId].buyPrice * buyQty;
+        return shopList[selectedId].buyPrice * buyQty;
     }
 
-    public bool canBuy()
+    public bool CanBuy()
     {
-        Debug.Log(calculateSum());
-        bool canBuy = true;
-        if (calculateSum() > Game.money) canBuy = false;
-        Debug.Log(canBuy);
-        return canBuy;
+        return CalculateSum() > Game.money;
     }
 
     public void OnBuy()
     {
-        Game.money -= calculateSum();
-        Game.inventory.smartInsert(shopList[selectedSlotId], this.buyQty);
+        Game.money -= CalculateSum();
+        Game.inventory.smartInsert(shopList[selectedId], buyQty);
         money.text = Game.money.ToString();
     }
-
-
-
 
 }
 

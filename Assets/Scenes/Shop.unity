@@ -1643,10 +1643,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03590b366ca44941ba10c6096b475d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoBox: {fileID: 106684155}
-  scrollViewContent: {fileID: 2147337891}
+  contentView: {fileID: 2147337891}
   boxPrefab: {fileID: 3610481250936242798, guid: 6b917958e4f28144a89698dcf6970d61,
     type: 3}
+  infoBox: {fileID: 106684155}
+  scrollViewContent: {fileID: 2147337891}
   textSum: {fileID: 75236170}
   textBuyQty: {fileID: 1705564586}
   itemName: {fileID: 233242386}

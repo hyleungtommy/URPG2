@@ -23,9 +23,6 @@ public class InventoryScene : BasicScene
         // }
         // header.render();
         itemInfoBox.gameObject.SetActive(false);
-        Game.inventory.smartInsert(DBManager.Instance.Items[0], 5);
-        Game.inventory.smartInsert(DBManager.Instance.Items[2], 5);
-        Game.inventory.smartInsert(DBManager.Instance.Items[6], 5);
         storageSystem = Game.inventory;
         render();
     }

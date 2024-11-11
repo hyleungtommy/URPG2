@@ -17,7 +17,7 @@ public class BattleScene : BasicScene
     public RewardPanel rewardPanel;
     public GameObject areaPanel;
     public Text textAreaPanel;
-    // public ItemPanelCtrl itemPanel;
+    public ItemPanelController itemPanel;
     // public SkillPanelCtrl skillPanel;
 
     private bool showingRewardPanel;// prevent multi update of reward panel;
@@ -103,7 +103,7 @@ public class BattleScene : BasicScene
         }
         showingRewardPanel = false;
         rewardPanel.gameObject.SetActive(false);
-        // itemPanel.gameObject.SetActive(false);
+        itemPanel.gameObject.SetActive(false);
         // skillPanel.gameObject.SetActive(false);
         StartCoroutine("tick");
         //}
@@ -212,18 +212,18 @@ public class BattleScene : BasicScene
 
     }
 
-    public void onSelectItem(int elementId)
+    public void OnSelectItem(int elementId)
     {
-        // int itemId = itemPanel.elements[elementId].itemId;
-        // if (itemId >= 0)
-        // {
-        //     battleCtrl.onSelectItem(itemId);
-        //     itemPanel.gameObject.SetActive(false);
-        //     topBarText.text = Constant.topBarSelectPlayer;
-        // }
+        int itemId = itemPanel.elements[elementId].itemId;
+        if (itemId >= 0)
+        {
+            battleCtrl.SelectItem(itemId);
+            itemPanel.gameObject.SetActive(false);
+            topBarText.text = Constant.topBarSelectPlayer;
+        }
     }
 
-    public void onSelectSkill(int elementId)
+    public void OnSelectSkill(int elementId)
     {
         // int skillId = skillPanel.elements[elementId].skillId;
         // Skill s = skillPanel.elements[elementId].skill;
@@ -274,7 +274,7 @@ public class BattleScene : BasicScene
         {
             battleCtrl.selectionMode = BattleCtrl.Selection.Attack;
             //setEnemySelectionArrowActive(true);
-            // itemPanel.gameObject.SetActive(false);
+            itemPanel.gameObject.SetActive(false);
             // skillPanel.gameObject.SetActive(false);
             topBar.gameObject.SetActive(true);
             topBarText.text = Constant.topBarSelectAnEnemy;
@@ -282,18 +282,18 @@ public class BattleScene : BasicScene
         }
     }
 
-    public void onClickItemButton()
+    public void OnClickItemButton()
     {
-        // if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
-        // {
-        //     battleCtrl.selectionMode = BattleCtrl.SELECTION_ITEM;
-        //     topBar.gameObject.SetActive(true);
-        //     topBarText.text = Constant.topBarSelectAnItem;
-        //     itemPanel.setVirtualInventory(battleCtrl.virtualInventory);
-        //     itemPanel.gameObject.SetActive(true);
-        //     skillPanel.gameObject.SetActive(false);
-        //     itemPanel.render();
-        // }
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
+        {
+            battleCtrl.selectionMode = BattleCtrl.Selection.Item;
+            topBar.gameObject.SetActive(true);
+            topBarText.text = Constant.topBarSelectAnItem;
+            itemPanel.SetVirtualInventory(battleCtrl.virtualInventory);
+            itemPanel.gameObject.SetActive(true);
+            //skillPanel.gameObject.SetActive(false);
+            itemPanel.Render();
+        }
     }
 
     public void onClickSkillButton()

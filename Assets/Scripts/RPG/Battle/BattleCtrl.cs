@@ -34,7 +34,7 @@ namespace RPG
         public Selection selectionMode { get; set; }
         public bool bossFight { get; set; }
         public bool[] levelUps { get; set; }
-        //public List<ItemAndQty> virtualInventory { get; set; }
+        public List<ItemAndQty> virtualInventory { get; set; }
         public int selectedItemId { get; set; }
         //public Skill selectedSkill { get; set; }
         public BattleCtrl(EntityEnemy[] enemyParty, EntityPlayer[] playerParty, BattleScene scene)
@@ -71,7 +71,7 @@ namespace RPG
             {
                 bossFight = false;
             }
-            //virtualInventory = Game.inventory.CreateVirtualItemInv();
+            virtualInventory = Game.inventory.CreateVirtualItemInv();
             battleState = BattleState.BattleRunning;
         }
         private Entity GetFriction(Friction friction, int index)
@@ -205,22 +205,22 @@ namespace RPG
 
         public void UseSelectedSpecial()
         {
-            // if (selectionMode == SELECTION_ITEM)
-            // {
-            //     FunctionalItem item = DB.QueryItem(selectedItemId) as FunctionalItem;
-            //     for (int i = 0; i < virtualInventory.Count; i++)
-            //     {
-            //         ItemAndQty a = virtualInventory[i];
-            //         if (a.item != null && a.item.id == item.id)
-            //         {
-            //             a.qty--;
-            //             if (a.qty == 0) virtualInventory.Remove(a);
-            //         }
-            //     }
-            //     Game.inventory.smartDelete(item, 1);
-            //     playerTakeAction(ACTION_ITEM, item);
-            //     selectionMode = SELECTION_NONE;
-            // }
+            if (selectionMode == Selection.Item)
+            {
+                FunctionalItem item = DBManager.Instance.Items[selectedItemId - 1] as FunctionalItem;
+                for (int i = 0; i < virtualInventory.Count; i++)
+                {
+                    ItemAndQty a = virtualInventory[i];
+                    if (a.item != null && a.item.id == item.id)
+                    {
+                        a.qty--;
+                        if (a.qty == 0) virtualInventory.Remove(a);
+                    }
+                }
+                Game.inventory.smartDelete(item, 1);
+                PlayerTakeAction(Action.Item, item);
+                selectionMode = Selection.None;
+            }
             // else if (selectionMode == SELECTION_SKILL_USE_ON_ENEMY || selectionMode == SELECTION_SKILL_USE_ON_PARTNER)
             // {
             //     if (selectedSkill.aoe)
