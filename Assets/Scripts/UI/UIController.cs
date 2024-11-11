@@ -50,9 +50,18 @@ public class UIController : MonoBehaviour
         SceneLoader.LoadUIScene(Scenes.Map);
     }
 
+    public void ShowInventory(){
+        Game.ChangeGameState(Game.State.OpenUI);
+        SceneLoader.LoadUIScene(Scenes.Inventory);
+    }
+
+    public void ShowShop(){
+        Game.ChangeGameState(Game.State.OpenUI);
+        SceneLoader.LoadUIScene(Scenes.Shop);
+    }
+
     public void HideAllUI(){
-        SceneLoader.UnloadUIScene(Scenes.Status);
-        SceneLoader.UnloadUIScene(Scenes.Map);
+        SceneLoader.UnloadUIScene();
         Game.ChangeGameState(Game.State.FreeRoam);
     }
 }

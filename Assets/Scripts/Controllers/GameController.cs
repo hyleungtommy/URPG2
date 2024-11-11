@@ -62,6 +62,10 @@ public class GameController : MonoBehaviour
             {
                 FindObjectOfType<PlayerController>()?.Interact();
             }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                UIController.Instance.ShowInventory();
+            }
         }
     }
 }

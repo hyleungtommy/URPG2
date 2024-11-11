@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Interactable
+namespace RPG
 {
-    void Interact();
+    public interface Interactable
+    {
+        void Interact();
+    }
 }

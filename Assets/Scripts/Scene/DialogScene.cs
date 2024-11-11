@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using RPG;
 public class DialogScene : MonoBehaviour
 {
     [SerializeField] GameObject dialogBox;
