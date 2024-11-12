@@ -29,6 +29,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 4b5f25da055bbcc4ca57c4f703f263c3
+  - enabled: 1
+    path: Assets/Scenes/Falone.unity
+    guid: 3681023cce358874d81724d8d2bf7056
+  - enabled: 1
+    path: Assets/Scenes/FaloneBlacksmith.unity
+    guid: 5115b8d820ab33d45acedf0305cc4249
+  - enabled: 1
+    path: Assets/Scenes/FaloneShop.unity
+    guid: 91fde804c783d524b9c0a49089cef5ff
+  - enabled: 1
+    path: Assets/Scenes/FaloneSkillCenter.unity
+    guid: a24d71497d4b767499eea6919aa86075
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3b7cb3ab22f28494d966db7afd8412ba,
       type: 2}

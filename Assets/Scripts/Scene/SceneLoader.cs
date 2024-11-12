@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum Scenes{
-    Battle, Dialog, Map, Status, World, ForestVillage, Inventory, Shop
+    Battle, Dialog, Map, Status, World, ForestVillage, Inventory, Shop, Falone, FaloneShop, FaloneBlacksmith, FaloneSkillCenter
 }
 public static class SceneLoader
 {
