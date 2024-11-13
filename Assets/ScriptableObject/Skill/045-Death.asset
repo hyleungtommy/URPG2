@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8387ffaf1f934147af41b2fd705c79f, type: 3}
+  m_Name: 045-Death
+  m_EditorClassIdentifier: 
+  id: 45
+  skillName: Death
+  desc: Dealing a large magical damage to the enemy, small chance to kill them instantly
+  img: {fileID: 21300000, guid: 6d3009471cade384297fd6ef10dac7c6, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: S44
+  maxSkillLv: 3
+  modifierStart: 5
+  modifierPerLv: 0.5
+  turn: 1
+  cooldown: 10
+  reqLvStart: 50
+  reqLvPerLv: 10
+  reqMpStart: 800
+  reqMpPerLv: 100
+  priceStart: 5000
+  pricePerLv: 1000
+  skillPtsStart: 5
+  skillPtsPerLv: 2
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

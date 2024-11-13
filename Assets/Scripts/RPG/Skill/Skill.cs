@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Internal;
 public enum UseOn
 {
     Opponent, Partner, Self
@@ -15,6 +17,7 @@ namespace RPG
         public string desc;
         public Sprite img;
         public bool isAOE;
+        public UseOn useOn;
         public string animation;
         public int maxSkillLv;
         public float modifierStart;
@@ -29,6 +32,15 @@ namespace RPG
         public int pricePerLv;
         public int skillPtsStart;
         public int skillPtsPerLv;
+        public Skill[] prerequisiteSkills;
+        public int[] prerequisiteSkillLv;
+
+        //Default Value
+        public void Reset(){
+            useOn = UseOn.Opponent;
+            isAOE = false;
+            turn = 1;
+        }
         public int reqMp
         {
             get

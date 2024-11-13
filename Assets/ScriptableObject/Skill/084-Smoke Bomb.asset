@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb6a404b7af4154990a2c16c639453e, type: 3}
+  m_Name: 084-Smoke Bomb
+  m_EditorClassIdentifier: 
+  id: 84
+  skillName: Smoke Bomb
+  desc: Drop a smoke bomb and greatly affect the slight of all enemies
+  img: {fileID: 21300000, guid: 40ff305f2250fbd4790e6eee6afcf8e5, type: 3}
+  isAOE: 1
+  useOn: 0
+  animation: S38
+  maxSkillLv: 3
+  modifierStart: 1.25
+  modifierPerLv: 0.25
+  turn: 1
+  cooldown: 3
+  reqLvStart: 65
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 100
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: cdae83bb22f40784b8c1c38df9d1e452, type: 2}
+  prerequisiteSkillLv: 02000000

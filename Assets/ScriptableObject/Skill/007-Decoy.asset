@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2c2c32e267da543bedf3af97adc5bb, type: 3}
+  m_Name: 007-Decoy
+  m_EditorClassIdentifier: 
+  id: 7
+  skillName: Decoy
+  desc: Make enemy target self
+  img: {fileID: 21300000, guid: 4cf5e3f4457b2c04188afd2c70453c53, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: S9
+  maxSkillLv: 5
+  modifierStart: 10000
+  modifierPerLv: 50000
+  turn: 1
+  cooldown: 0
+  reqLvStart: 0
+  reqLvPerLv: 10
+  reqMpStart: 20
+  reqMpPerLv: 50
+  priceStart: 1000
+  pricePerLv: 1000
+  skillPtsStart: 1
+  skillPtsPerLv: 1
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

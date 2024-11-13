@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03aa32ab4324d3e4e91caaabc2dc48e3, type: 3}
+  m_Name: 082-Wind Song
+  m_EditorClassIdentifier: 
+  id: 82
+  skillName: Wind Song
+  desc: Recieve blessing of wind, reset all current cooldown to zero
+  img: {fileID: 21300000, guid: 7851d4260ce3cb84a866947005b93f54, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: 
+  maxSkillLv: 1
+  modifierStart: 0
+  modifierPerLv: 0
+  turn: 1
+  cooldown: 10
+  reqLvStart: 50
+  reqLvPerLv: 0
+  reqMpStart: 500
+  reqMpPerLv: 0
+  priceStart: 10000
+  pricePerLv: 0
+  skillPtsStart: 5
+  skillPtsPerLv: 0
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: f9fee560af7bb174eb13895fd773eb04, type: 2}
+  prerequisiteSkillLv: 02000000

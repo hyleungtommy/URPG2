@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25173359720bf6c4aa8c9513306cc1b1, type: 3}
+  m_Name: 048-Hyperspeed Shot
+  m_EditorClassIdentifier: 
+  id: 48
+  skillName: Hyperspeed Shot
+  desc: Shot a hyperspeed arrow
+  img: {fileID: 21300000, guid: 3a0c09d6590be2e4e9dc60cffae518b1, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: 
+  maxSkillLv: 5
+  modifierStart: 2.5
+  modifierPerLv: 0.5
+  turn: 1
+  cooldown: 2
+  reqLvStart: 50
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 1000
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

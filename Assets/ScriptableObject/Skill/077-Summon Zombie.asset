@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb15ffdcb1ae8b48b1298c009ea3193, type: 3}
+  m_Name: 077-Summon Zombie
+  m_EditorClassIdentifier: 
+  id: 77
+  skillName: Summon Zombie
+  desc: Summon a zombie to protect the caster for 10 rounds. Zombie will reduce incoming
+    damage for 50%. Only 1 summon can exist at the same time
+  img: {fileID: 21300000, guid: a9de130c7e1bd5944bd084e8ac88aa93, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: 
+  maxSkillLv: 5
+  modifierStart: 2
+  modifierPerLv: 0.5
+  turn: 10
+  cooldown: 2
+  reqLvStart: 30
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: b0be171f300520d4d83221e654ff980d, type: 2}
+  prerequisiteSkillLv: 02000000

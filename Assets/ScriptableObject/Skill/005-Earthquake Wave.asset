@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25173359720bf6c4aa8c9513306cc1b1, type: 3}
+  m_Name: 005-Earthquake Wave
+  m_EditorClassIdentifier: 
+  id: 5
+  skillName: Earthquake Wave
+  desc: Deal %mod% damage to all enemies
+  img: {fileID: 21300000, guid: 853d41365ad079248959c396063b43fc, type: 3}
+  isAOE: 1
+  useOn: 0
+  animation: S4
+  maxSkillLv: 6
+  modifierStart: 2
+  modifierPerLv: 0.25
+  turn: 1
+  cooldown: 5
+  reqLvStart: 30
+  reqLvPerLv: 10
+  reqMpStart: 300
+  reqMpPerLv: 100
+  priceStart: 5000
+  pricePerLv: 1000
+  skillPtsStart: 5
+  skillPtsPerLv: 1
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: 786e87b66df047e43aaa6f1a3a71ac1b, type: 2}
+  prerequisiteSkillLv: 03000000

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25173359720bf6c4aa8c9513306cc1b1, type: 3}
+  m_Name: 052-Explosive Shot
+  m_EditorClassIdentifier: 
+  id: 52
+  skillName: Explosive Shot
+  desc: Shot a explosive arrow
+  img: {fileID: 21300000, guid: 25bacaafd664a944089f92910b9fca10, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: S17
+  maxSkillLv: 4
+  modifierStart: 4
+  modifierPerLv: 0.5
+  turn: 1
+  cooldown: 5
+  reqLvStart: 60
+  reqLvPerLv: 10
+  reqMpStart: 230
+  reqMpPerLv: 50
+  priceStart: 1000
+  pricePerLv: 1000
+  skillPtsStart: 5
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: 5fc22d6a59d10bd408ac8af61cf18f8a, type: 2}
+  prerequisiteSkillLv: 03000000

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdbe35915b4c9d49ac78bb69f64b1a7, type: 3}
+  m_Name: 011-Heal
+  m_EditorClassIdentifier: 
+  id: 11
+  skillName: Heal
+  desc: Heal target
+  img: {fileID: 21300000, guid: 4dca6972d3698f644bd86a8945a74b93, type: 3}
+  isAOE: 0
+  useOn: 1
+  animation: 
+  maxSkillLv: 10
+  modifierStart: 100
+  modifierPerLv: 25
+  turn: 1
+  cooldown: 3
+  reqLvStart: 20
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 20
+  priceStart: 1000
+  pricePerLv: 500
+  skillPtsStart: 1
+  skillPtsPerLv: 2
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

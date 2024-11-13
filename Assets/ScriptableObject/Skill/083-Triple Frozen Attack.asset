@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25173359720bf6c4aa8c9513306cc1b1, type: 3}
+  m_Name: 083-Triple Frozen Attack
+  m_EditorClassIdentifier: 
+  id: 83
+  skillName: Triple Frozen Attack
+  desc: Deal three quick frozen attacks on the enemy, chance to decrease enemy speed
+  img: {fileID: 21300000, guid: 4b3ea200c45a0d7439e096dd3ccf03a4, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: 
+  maxSkillLv: 4
+  modifierStart: 1.25
+  modifierPerLv: 0.25
+  turn: 3
+  cooldown: 3
+  reqLvStart: 60
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: 6564370dc4564d14e9ce33f7b45d3a6c, type: 2}
+  prerequisiteSkillLv: 02000000

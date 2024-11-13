@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb6a404b7af4154990a2c16c639453e, type: 3}
+  m_Name: 086-Poisonous Bomb
+  m_EditorClassIdentifier: 
+  id: 86
+  skillName: Poisonous Bomb
+  desc: Drop a poisonous bomb to posion all enemies
+  img: {fileID: 21300000, guid: 6b9036213e5c8cf41a5818d65aff53f8, type: 3}
+  isAOE: 1
+  useOn: 0
+  animation: S28
+  maxSkillLv: 3
+  modifierStart: 1.25
+  modifierPerLv: 0.25
+  turn: 1
+  cooldown: 3
+  reqLvStart: 65
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: c397fd53a53e1214d85f7f96519b4267, type: 2}
+  prerequisiteSkillLv: 01000000

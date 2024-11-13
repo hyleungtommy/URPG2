@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03aa32ab4324d3e4e91caaabc2dc48e3, type: 3}
+  m_Name: 087-Shadow Form
+  m_EditorClassIdentifier: 
+  id: 87
+  skillName: Shadow Form
+  desc: Enter Shadow Form, greatly increase self's AGI and DEX for 5 rounds, remove
+    all current skill cooldown and increase damage of Shadow Assult by 200%
+  img: {fileID: 21300000, guid: 84d1cca66fc0eba498138d7f08943207, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: S39
+  maxSkillLv: 3
+  modifierStart: 1.25
+  modifierPerLv: 0.25
+  turn: 5
+  cooldown: 10
+  reqLvStart: 65
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: 6564370dc4564d14e9ce33f7b45d3a6c, type: 2}
+  prerequisiteSkillLv: 02000000

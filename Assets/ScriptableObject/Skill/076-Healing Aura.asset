@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdbe35915b4c9d49ac78bb69f64b1a7, type: 3}
+  m_Name: 076-Healing Aura
+  m_EditorClassIdentifier: 
+  id: 76
+  skillName: Healing Aura
+  desc: Heal all party members
+  img: {fileID: 21300000, guid: 1aaa2100aedc9254a9944b4221e66f7a, type: 3}
+  isAOE: 1
+  useOn: 1
+  animation: 
+  maxSkillLv: 5
+  modifierStart: 2
+  modifierPerLv: 0.5
+  turn: 1
+  cooldown: 3
+  reqLvStart: 30
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: f27b9c64f37fd934f8afe3ca22336456, type: 2}
+  prerequisiteSkillLv: 02000000

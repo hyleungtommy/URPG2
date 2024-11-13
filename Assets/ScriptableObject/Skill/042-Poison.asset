@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb6a404b7af4154990a2c16c639453e, type: 3}
+  m_Name: 042-Poison
+  m_EditorClassIdentifier: 
+  id: 42
+  skillName: Poison
+  desc: Decrease enemy's HP for 5 rounds
+  img: {fileID: 21300000, guid: 4872130b3cc29454c9071d8306012dd1, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: 
+  maxSkillLv: 5
+  modifierStart: 0.01
+  modifierPerLv: 0.01
+  turn: 10
+  cooldown: 5
+  reqLvStart: 40
+  reqLvPerLv: 10
+  reqMpStart: 100
+  reqMpPerLv: 20
+  priceStart: 2000
+  pricePerLv: 1000
+  skillPtsStart: 2
+  skillPtsPerLv: 1
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

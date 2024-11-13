@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5217160e8a5d54546a7e2c2a5b8330c1, type: 3}
+  m_Name: 013-Fireball
+  m_EditorClassIdentifier: 
+  id: 13
+  skillName: Fireball
+  desc: Cast a common fireball, deals %mod% damage
+  img: {fileID: 21300000, guid: d8067a3617eb2a349a764834dd171a15, type: 3}
+  isAOE: 0
+  useOn: 0
+  animation: S13
+  maxSkillLv: 10
+  modifierStart: 1.7
+  modifierPerLv: 0.2
+  turn: 1
+  cooldown: 1
+  reqLvStart: 20
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 25
+  priceStart: 500
+  pricePerLv: 500
+  skillPtsStart: 1
+  skillPtsPerLv: 1
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

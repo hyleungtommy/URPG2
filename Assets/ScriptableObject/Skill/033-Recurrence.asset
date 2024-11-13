@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4316b0c4c6a1b234cb578ed36881f9e7, type: 3}
+  m_Name: 033-Recurrence
+  m_EditorClassIdentifier: 
+  id: 33
+  skillName: Recurrence
+  desc: Revive member
+  img: {fileID: 21300000, guid: 277190f1bf994564c9d7f987cfc2bc00, type: 3}
+  isAOE: 0
+  useOn: 1
+  animation: 
+  maxSkillLv: 1
+  modifierStart: 1
+  modifierPerLv: 0
+  turn: 1
+  cooldown: 5
+  reqLvStart: 40
+  reqLvPerLv: 0
+  reqMpStart: 500
+  reqMpPerLv: 0
+  priceStart: 5000
+  pricePerLv: 0
+  skillPtsStart: 3
+  skillPtsPerLv: 0
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

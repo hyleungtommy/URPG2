@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb15ffdcb1ae8b48b1298c009ea3193, type: 3}
+  m_Name: 004-HotBlooded
+  m_EditorClassIdentifier: 
+  id: 4
+  skillName: HotBlooded
+  desc: Increase Self ATK for 10 turns
+  img: {fileID: 21300000, guid: b43a9b1579e985a4f91e7b17c53ab2aa, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: 
+  maxSkillLv: 5
+  modifierStart: 2
+  modifierPerLv: 0.05
+  turn: 10
+  cooldown: 10
+  reqLvStart: 30
+  reqLvPerLv: 10
+  reqMpStart: 300
+  reqMpPerLv: 100
+  priceStart: 3000
+  pricePerLv: 2000
+  skillPtsStart: 2
+  skillPtsPerLv: 2
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 

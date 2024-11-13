@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb15ffdcb1ae8b48b1298c009ea3193, type: 3}
+  m_Name: 066-Berserking
+  m_EditorClassIdentifier: 
+  id: 66
+  skillName: Berserking
+  desc: Enter Berserk mode for 5 round, Increase all attack skill damage by 150%
+    but reduce defense by 50%, Beserk Assault will cause an extra 200% damage on
+    top of that.
+  img: {fileID: 21300000, guid: c9fb886730841e54cabde586b05963fd, type: 3}
+  isAOE: 0
+  useOn: 2
+  animation: 
+  maxSkillLv: 1
+  modifierStart: 1.5
+  modifierPerLv: 2.5
+  turn: 5
+  cooldown: 15
+  reqLvStart: 50
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 50
+  priceStart: 2500
+  pricePerLv: 1000
+  skillPtsStart: 4
+  skillPtsPerLv: 2
+  prerequisiteSkills:
+  - {fileID: 11400000, guid: 6a6a9ead2d2e2184fb4be0802d684ffa, type: 2}
+  prerequisiteSkillLv: 01000000

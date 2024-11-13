@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25173359720bf6c4aa8c9513306cc1b1, type: 3}
+  m_Name: 002-Double Attack
+  m_EditorClassIdentifier: 
+  id: 2
+  skillName: Double Attack
+  desc: Deal 2 Round of damage, power of each attack become %mod%
+  img: {fileID: 21300000, guid: 0fd6607d786ca894dba1b7c4e79575a0, type: 3}
+  isAOE: 0
+  animation: S1
+  maxSkillLv: 10
+  modifierStart: 0.75
+  modifierPerLv: 0.05
+  turn: 1
+  cooldown: 3
+  reqLvStart: 15
+  reqLvPerLv: 5
+  reqMpStart: 100
+  reqMpPerLv: 25
+  priceStart: 1000
+  pricePerLv: 500
+  skillPtsStart: 1
+  skillPtsPerLv: 1
+  prerequisiteSkills: []
+  prerequisiteSkillLv: 
