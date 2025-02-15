@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour, Interactable
 {
-    [SerializeField] Scenes scenes;
+    [SerializeField] SceneList.Map scenes;
     
     public void Interact(){
         SceneController.Instance.AnimatedTransit(scenes);

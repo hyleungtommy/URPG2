@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneTransitController : MonoBehaviour
 {
-    [SerializeField] Scenes sceneName;
+    [SerializeField] SceneList.Map sceneName;
 
     void OnTriggerEnter2D(Collider2D collision){
         if(collision.CompareTag("Player")){

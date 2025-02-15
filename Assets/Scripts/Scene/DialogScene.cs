@@ -43,7 +43,7 @@ public class DialogScene : MonoBehaviour
             if(currentLine < dialog.Lines.Count){
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }else{
-                SceneLoader.UnloadUIScene(Scenes.Dialog);
+                SceneLoader.UnloadUIScene(SceneList.UI.Dialog);
                 currentLine = 0;
                 Game.ChangeGameState(Game.State.FreeRoam);
             }

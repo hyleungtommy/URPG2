@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneLoader.GetSceneObject(Scenes.Dialog)?.GetComponent<DialogScene>().HandleUpdate();
+                SceneLoader.GetSceneObject(SceneList.UI.Dialog)?.GetComponent<DialogScene>().HandleUpdate();
             }
         }
         else if (Game.state == Game.State.OpenUI)// Can only press escape when opened a UI

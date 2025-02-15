@@ -36,28 +36,28 @@ public class UIController : MonoBehaviour
     public void ShowDialog(NPC npcdata){
         SceneParameters.npcdata = npcdata;
         Game.ChangeGameState(Game.State.Dialog);
-        SceneLoader.LoadUIScene(Scenes.Dialog);
+        SceneLoader.LoadUIScene(SceneList.UI.Dialog);
     }
 
     public void ShowStatus(){
         Game.ChangeGameState(Game.State.OpenUI);
-        SceneLoader.LoadUIScene(Scenes.Status);
+        SceneLoader.LoadUIScene(SceneList.UI.Status);
     }
 
     public void ShowMap(Map _map){
         SceneParameters.mapData = _map;
         Game.ChangeGameState(Game.State.OpenUI);
-        SceneLoader.LoadUIScene(Scenes.Map);
+        SceneLoader.LoadUIScene(SceneList.UI.Map);
     }
 
     public void ShowInventory(){
         Game.ChangeGameState(Game.State.OpenUI);
-        SceneLoader.LoadUIScene(Scenes.Inventory);
+        SceneLoader.LoadUIScene(SceneList.UI.Inventory);
     }
 
     public void ShowShop(){
         Game.ChangeGameState(Game.State.OpenUI);
-        SceneLoader.LoadUIScene(Scenes.Shop);
+        SceneLoader.LoadUIScene(SceneList.UI.Shop);
     }
 
     public void HideAllUI(){

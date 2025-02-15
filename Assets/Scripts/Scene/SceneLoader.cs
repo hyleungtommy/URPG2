@@ -3,32 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Scenes{
-    Battle, Dialog, Map, Status, World, ForestVillage, Inventory, Shop, Falone, FaloneShop, FaloneBlacksmith, FaloneSkillCenter
-}
+
 public static class SceneLoader
 {
-    public static void LoadScene(Scenes sceneName){
+    public static SceneList.UI CurrentOpenedUIScene{
+        private set; get;
+    }
+
+    public static SceneList.Map CurrentOpenedMapScene{
+        private set; get;
+    }
+    
+    public static void LoadMapScene(SceneList.Map sceneName){
+        CurrentOpenedMapScene = sceneName;
         SceneManager.LoadScene(sceneName.ToString());
     }
 
-    private static Scenes currentOpenScene;
-
-    public static void LoadUIScene(Scenes sceneName){
-        currentOpenScene = sceneName;
+    public static void LoadUIScene(SceneList.UI sceneName){
+        CurrentOpenedUIScene = sceneName;
         SceneManager.LoadScene(sceneName.ToString(), LoadSceneMode.Additive);
     }
 
     public static void UnloadUIScene(){
-        Scene scene = SceneManager.GetSceneByName(currentOpenScene.ToString());
+        Scene scene = SceneManager.GetSceneByName(CurrentOpenedUIScene.ToString());
         if (scene.isLoaded)
         {
             // Unload the scene if it’s loaded
-            SceneManager.UnloadSceneAsync(currentOpenScene.ToString());
+            SceneManager.UnloadSceneAsync(CurrentOpenedUIScene.ToString());
         }
     }
 
-    public static void UnloadUIScene(Scenes sceneName){
+    public static void UnloadUIScene(SceneList.UI sceneName){
         Scene scene = SceneManager.GetSceneByName(sceneName.ToString());
         if (scene.isLoaded)
         {
@@ -37,7 +42,16 @@ public static class SceneLoader
         }
     }
 
-    public static GameObject GetSceneObject(Scenes sceneName){
+    public static GameObject GetSceneObject(SceneList.UI sceneName){
+        Scene scene = SceneManager.GetSceneByName(sceneName.ToString());
+        if (scene.isLoaded)
+        {
+            return scene.GetRootGameObjects()[0];
+        }
+        return null;
+    }
+
+    public static GameObject GetSceneObject(SceneList.Map sceneName){
         Scene scene = SceneManager.GetSceneByName(sceneName.ToString());
         if (scene.isLoaded)
         {
