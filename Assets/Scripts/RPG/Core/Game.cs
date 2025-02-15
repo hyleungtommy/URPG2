@@ -15,6 +15,7 @@ namespace RPG
         public static int money = 10000;
         public static int platinumCoin;
         public static StorageSystem inventory = new StorageSystem(50);
+        public static bool devMode = true;
         public enum State
         {
             FreeRoam, Dialog, Battle, OpenUI

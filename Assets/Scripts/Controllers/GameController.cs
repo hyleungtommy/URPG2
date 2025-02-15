@@ -66,6 +66,11 @@ public class GameController : MonoBehaviour
             {
                 UIController.Instance.ShowInventory();
             }
+            if(Game.devMode){
+                if(Input.GetKeyDown(KeyCode.S)){
+                    UIController.Instance.ShowShop();
+                }
+            }
         }
     }
 }

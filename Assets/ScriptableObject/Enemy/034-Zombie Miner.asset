@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d697a55fe1f78f5459d6c93cd06e91d0, type: 3}
+  m_Name: 034-Zombie Miner
+  m_EditorClassIdentifier: 
+  id: 34
+  enemyName: Zombie Miner
+  img: {fileID: 21300000, guid: 34aa3a5ae01fb7343bcb14589efdf2d3, type: 3}
+  HP: 17500
+  MP: 3000
+  ATK: 960
+  DEF: 400
+  MATK: 625
+  MDEF: 300
+  AGI: 52
+  DEX: 135
+  DropEXP: 1180
+  DropMoney: 560
+  fire: 0
+  ice: 0
+  lighting: -25
+  earth: 50
+  wind: 0
+  light: -50
+  dark: -25

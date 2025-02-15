@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d697a55fe1f78f5459d6c93cd06e91d0, type: 3}
+  m_Name: 029-Bat
+  m_EditorClassIdentifier: 
+  id: 29
+  enemyName: Bat
+  img: {fileID: 21300000, guid: 29aacfcf8d9f5794f9b3081f927c8205, type: 3}
+  HP: 10000
+  MP: 3000
+  ATK: 900
+  DEF: 375
+  MATK: 550
+  MDEF: 250
+  AGI: 52
+  DEX: 132
+  DropEXP: 1000
+  DropMoney: 505
+  fire: 0
+  ice: 0
+  lighting: -25
+  earth: 50
+  wind: 0
+  light: 0
+  dark: 0

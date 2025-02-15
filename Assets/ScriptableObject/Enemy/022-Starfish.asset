@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d697a55fe1f78f5459d6c93cd06e91d0, type: 3}
+  m_Name: 022-Starfish
+  m_EditorClassIdentifier: 
+  id: 22
+  enemyName: Starfish
+  img: {fileID: 21300000, guid: 2784ea275f90729409d3603c967fbccc, type: 3}
+  HP: 5500
+  MP: 1500
+  ATK: 1080
+  DEF: 350
+  MATK: 550
+  MDEF: 250
+  AGI: 45
+  DEX: 105
+  DropEXP: 400
+  DropMoney: 235
+  fire: -25
+  ice: 50
+  lighting: 0
+  earth: 0
+  wind: 0
+  light: 0
+  dark: 0

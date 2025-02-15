@@ -17,3 +17,19 @@ MonoBehaviour:
   startingStat: 190000000a000000230000000f0000000f000000
   levelUpGain: 0300000001000000050000000300000003000000
   autoAllocateSchedule: 0100000000000000020000000100000001000000
+  skillList:
+  - {fileID: 11400000, guid: 4e30ab0a79b7033408b6894326430fad, type: 2}
+  - {fileID: 11400000, guid: 1eee721e5f0275d47bc6e0dec87ad3b5, type: 2}
+  - {fileID: 11400000, guid: 9905b357ce0b87c4c8a65e945df858e3, type: 2}
+  - {fileID: 11400000, guid: a3c8799f856f87643867d71a9ea10d6f, type: 2}
+  - {fileID: 11400000, guid: 39c8de7113d0885459ce7f5d6b5d9eca, type: 2}
+  - {fileID: 11400000, guid: d11dfe697a3226f4e8e6a44e1c7a500f, type: 2}
+  - {fileID: 11400000, guid: f2c12d38d6cc88a46a78cd14b1f77faa, type: 2}
+  - {fileID: 11400000, guid: c60adfd8efdd7434e9a075cbfa9fae94, type: 2}
+  - {fileID: 11400000, guid: afe9d7ae120b871469ec605fce373aaa, type: 2}
+  - {fileID: 11400000, guid: 5ec8e85bc739d7a419e4efc07bb36d89, type: 2}
+  - {fileID: 11400000, guid: 4e76487ebdfdb884c82d6a1e70f9a520, type: 2}
+  - {fileID: 11400000, guid: 738c25ae405c034439acb46c80075756, type: 2}
+  - {fileID: 11400000, guid: f27b9c64f37fd934f8afe3ca22336456, type: 2}
+  - {fileID: 11400000, guid: 2e6b769a589cd074687f01446456dca7, type: 2}
+  - {fileID: 11400000, guid: cfa3e0f6d7b5f7f458e62ca130bdf092, type: 2}

@@ -840,18 +840,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 93253569}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &93253571 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3357934265326554641, guid: 5621aad853dd65d47875729003e0744e,
-    type: 3}
-  m_PrefabInstance: {fileID: 93253569}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &104230506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1145,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 867605340}
+      - m_Target: {fileID: 0}
         m_MethodName: OnBuy
         m_Mode: 1
         m_Arguments:
@@ -7189,7 +7177,6 @@ GameObject:
   - component: {fileID: 867605343}
   - component: {fileID: 867605342}
   - component: {fileID: 867605341}
-  - component: {fileID: 867605340}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -7197,29 +7184,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &867605340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867605339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c03590b366ca44941ba10c6096b475d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentView: {fileID: 0}
-  boxPrefab: {fileID: 3610481250936242798, guid: 6b917958e4f28144a89698dcf6970d61,
-    type: 3}
-  infoBox: {fileID: 2008948081}
-  scrollViewContent: {fileID: 0}
-  textSum: {fileID: 1295653666}
-  textBuyQty: {fileID: 0}
-  itemName: {fileID: 1830566677}
-  itemDesc: {fileID: 1189388586}
-  money: {fileID: 93253571}
-  btnBuy: {fileID: 134114475}
 --- !u!114 &867605341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10471,18 +10435,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1295653664}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1295653666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3357934265326554641, guid: 5621aad853dd65d47875729003e0744e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1295653664}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1333817444
 GameObject:
   m_ObjectHideFlags: 0

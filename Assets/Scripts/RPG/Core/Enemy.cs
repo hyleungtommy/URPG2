@@ -20,6 +20,15 @@ namespace RPG
         public int DEX;
         public int DropEXP;
         public int DropMoney;
+        [Header("Elemental Resistance")]
+        public int fire;
+        public int ice;
+        public int lighting;
+        public int earth;
+        public int wind;
+        public int light;
+        public int dark;
+
 
         public EntityEnemy ToEntity()
         {

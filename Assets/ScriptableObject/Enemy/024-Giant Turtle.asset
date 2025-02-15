@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d697a55fe1f78f5459d6c93cd06e91d0, type: 3}
+  m_Name: 024-Giant Turtle
+  m_EditorClassIdentifier: 
+  id: 24
+  enemyName: Giant Turtle
+  img: {fileID: 21300000, guid: eb70db6a1c0d1dc45a54e3fbaee729c0, type: 3}
+  HP: 8000
+  MP: 2000
+  ATK: 1025
+  DEF: 400
+  MATK: 500
+  MDEF: 270
+  AGI: 48
+  DEX: 115
+  DropEXP: 450
+  DropMoney: 280
+  fire: -25
+  ice: 50
+  lighting: 0
+  earth: 50
+  wind: 0
+  light: 0
+  dark: 0

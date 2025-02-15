@@ -12,25 +12,26 @@ namespace RPG
         public List<int> startingStat;
         public List<int> levelUpGain;
         public List<int> autoAllocateSchedule;
+        public List<Skill> skillList;
 
         /// <summary>
         /// Create a skill list when creating an entity
         /// </summary>
         /// <returns>A list of skills that the entity player has</returns>
-        // public List<Skill> CreateEntityPlayerSkillList()
-        // {
-        //     List<Skill> slist = new List<Skill>();
-        //     for (int i = 0; i < skills.Count; i++)
-        //     {
-        //         if (skills[i] != null && skills[i].skillLv > 0)
-        //         {
-        //             Skill s = skills[i].toSkill();
-        //             //Debug.Log(name + "," + s);
-        //             if (s != null) slist.Add(s);
-        //         }
-        //     }
-        //     return slist;
-        // }
+        public List<Skill> CreateEntityPlayerSkillList()
+        {
+            List<Skill> slist = new List<Skill>();
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                if (skillList[i] != null && skillList[i].skillLv > 0)
+                {
+                    Skill s = skillList[i];
+                    //Debug.Log(name + "," + s);
+                    if (s != null) slist.Add(s);
+                }
+            }
+            return slist;
+        }
 
         /// <summary>
         /// Get all skills that the character learnt

@@ -17,3 +17,14 @@ MonoBehaviour:
   startingStat: 0a000000140000000a000000190000002d000000
   levelUpGain: 0100000002000000010000000400000007000000
   autoAllocateSchedule: 0100000001000000000000000200000001000000
+  skillList:
+  - {fileID: 11400000, guid: fd16ca1a5ee6a4548b7cc1e2049bb00e, type: 2}
+  - {fileID: 11400000, guid: 434496c8aa9c0fb418bbf96e02ec1d57, type: 2}
+  - {fileID: 11400000, guid: cdae83bb22f40784b8c1c38df9d1e452, type: 2}
+  - {fileID: 11400000, guid: 6564370dc4564d14e9ce33f7b45d3a6c, type: 2}
+  - {fileID: 11400000, guid: 56b7ebb1b91eb7843a04e9ddcfc462e3, type: 2}
+  - {fileID: 11400000, guid: 607e7e44967495448bea454d10793efa, type: 2}
+  - {fileID: 11400000, guid: c397fd53a53e1214d85f7f96519b4267, type: 2}
+  - {fileID: 11400000, guid: d126ee2a06fd6b04a9ae8ec3eba55c29, type: 2}
+  - {fileID: 11400000, guid: fd1104d807f2e2549a90e731cd1b59f0, type: 2}
+  - {fileID: 11400000, guid: 574a83967b4a04a4eb57767c2c865bea, type: 2}
