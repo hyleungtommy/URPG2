@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FaloneSkillCenter.unity
     guid: a24d71497d4b767499eea6919aa86075
+  - enabled: 1
+    path: Assets/Scenes/SkillCenter.unity
+    guid: a0b4a3cf9d0ab3c42a8a79c58614a430
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3b7cb3ab22f28494d966db7afd8412ba,
       type: 2}

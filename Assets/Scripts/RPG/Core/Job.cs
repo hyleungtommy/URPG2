@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace RPG
 {
     [CreateAssetMenu(fileName = "Job", menuName = "Character/Job")]
@@ -37,19 +37,19 @@ namespace RPG
         /// Get all skills that the character learnt
         /// </summary>
         /// <returns>A list of skills that character learnt</returns>
-        // public List<GeneralSkill> GetLearntSkills()
-        // {
-        //     return skills.Where(a => a != null && a.skillLv > 0).ToList();
-        // }
+        public List<Skill> GetLearntSkills()
+        {
+            return skillList.Where(a => a != null && a.skillLv > 0).ToList();
+        }
 
         /// <summary>
         /// Get all skills that the character has not yet learn
         /// </summary>
         /// <returns>A list of skills that character has not yet learn</returns>
-        // public List<GeneralSkill> GetLearnableSkills(BattleCharacter ch)
-        // {
-        //     return skills.Where(a => a != null && a.reqLv <= ch.lv).ToList();
-        // }
+        public List<Skill> GetLearnableSkills(BattleCharacter ch)
+        {
+            return skillList.Where(a => a != null && a.reqLv <= ch.lv).ToList();
+        }
 
         // public string onSave()
         // {

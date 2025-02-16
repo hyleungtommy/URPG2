@@ -106,6 +106,18 @@ namespace RPG
             return null;
         }
 
+        public bool CanLearn(Job job){
+            bool canLearn = true;
+            List<Skill> learntSkillList = job.GetLearntSkills();
+            int i = 0;
+            foreach(Skill prerequisiteSkill in prerequisiteSkills){
+                canLearn = learntSkillList.Exists(s => s.id == prerequisiteSkill.id && s.skillLv >= prerequisiteSkillLv[i]);
+                i ++;
+            }
+            Debug.Log("can learn " + name + " = " + canLearn);
+            return canLearn;
+        }
+
         protected void applyDebuff(Entity user, Entity target)
         {
             // if (buffList != null)
