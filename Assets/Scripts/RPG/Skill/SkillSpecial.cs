@@ -6,5 +6,9 @@ namespace RPG
 {
     public abstract class SkillSpecial : Skill
     {
+        public override string GetSkillType()
+        {
+            return "Special Skill";
+        }
     }
 }

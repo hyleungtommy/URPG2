@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   characterName: Anson
-  startLv: 1
+  startLv: 20
   unlockAtStart: 1
   bodyImg: {fileID: 21300000, guid: 269cb1546e08c974fbe8f461fef9c50f, type: 3}
   faceImg: {fileID: 21300004, guid: 58be10700622a0c48ad0780e2ff2d16c, type: 3}

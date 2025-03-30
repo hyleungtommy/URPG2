@@ -50,9 +50,9 @@ namespace RPG
             return false;
         }
 
-        public string getTypeName()
+        public override string GetSkillType()
         {
-            return "Defense";
+            return "Defense Skill";
         }
     }
 }

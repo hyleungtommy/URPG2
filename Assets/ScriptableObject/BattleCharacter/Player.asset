@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   characterName: Tommy
-  startLv: 1
+  startLv: 20
   unlockAtStart: 1
   bodyImg: {fileID: 21300000, guid: 42df3f79cde3b234da7df52f5354389e, type: 3}
   faceImg: {fileID: 21300000, guid: 1c610f9d94d3d3b4a8874936c9a5b11e, type: 3}

@@ -41,5 +41,10 @@ namespace RPG
         {
             return true;
         }
+
+        public override string GetSkillType()
+        {
+            return "Buff Skill";
+        }
     }
 }

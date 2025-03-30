@@ -18,5 +18,10 @@ namespace RPG
         {
             return false;
         }
+
+        public override string GetSkillType()
+        {
+            return "Passive Skill";
+        }
     }
 }

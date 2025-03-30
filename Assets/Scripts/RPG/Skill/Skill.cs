@@ -93,6 +93,10 @@ namespace RPG
         public int skillLv { get; set; }//need to save
         public int currCooldown { get; set; }
 
+        void OnDisable() {
+            skillLv = 0;
+        }
+
         public Sprite GetDisplayingImage()
         {
             return img;
@@ -145,8 +149,12 @@ namespace RPG
         }
 
         public abstract bool isAttackSkill();
+        public abstract string GetSkillType();
 
-
+        public void Learn()
+        {
+            skillLv++;
+        }
 
     }
 }

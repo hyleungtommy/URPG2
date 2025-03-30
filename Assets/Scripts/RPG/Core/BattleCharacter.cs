@@ -50,18 +50,29 @@ namespace RPG
         public Sprite GetDisplayingImage(){
             return faceImg;
         }
+        //need to use SkillListClone to prevent modifying the original ScriptableObject
+        public List<Skill> SkillList
+        {
+            get; set;
+        }
 
         public void Init(){
             lv = startLv;
             currexp = 0;
             expneed = Util.getRequireEXPForLevel(lv);
             upptAlloc = new int[]{0,0,0,0,0};
-            upptEarned = 0;
+            upptEarned = 50;
             unlocked = unlockAtStart;
             listPos = id - 1;
-            skillPtsEarned = 0;
+            skillPtsEarned = 15;
             skillPtsSpent = 0;
             UpdateBattleCharacterStat();
+            SkillList = new List<Skill>();
+            foreach (Skill skill in job.skillList)
+            {
+                Skill clonedSkill = Instantiate(skill); // Create a unique instance
+                SkillList.Add(clonedSkill);
+            }
         }
 
         public void onload(string save)

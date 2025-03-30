@@ -97,5 +97,10 @@ namespace RPG
         {
             return true;
         }
+
+        public override string GetSkillType()
+        {
+            return "Attack Skill";
+        }
     }
 }

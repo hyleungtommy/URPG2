@@ -43,5 +43,10 @@ namespace RPG
         {
             return false;
         }
+
+        public override string GetSkillType()
+        {
+            return "Healing Skill";
+        }
     }
 }
