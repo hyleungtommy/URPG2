@@ -16,6 +16,7 @@ public class SceneList{
         Inventory,
         Shop,
         SkillCenter,
+        Skill
 
     }
 }

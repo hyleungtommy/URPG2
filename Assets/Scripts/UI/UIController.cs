@@ -65,6 +65,11 @@ public class UIController : MonoBehaviour
         SceneLoader.LoadUIScene(SceneList.UI.SkillCenter);
     }
 
+    public void ShowSkillScene(){
+        Game.ChangeGameState(Game.State.OpenUI);
+        SceneLoader.LoadUIScene(SceneList.UI.Skill);
+    }
+
     public void HideAllUI(){
         SceneLoader.UnloadUIScene();
         Game.ChangeGameState(Game.State.FreeRoam);
