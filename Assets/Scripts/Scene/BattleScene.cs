@@ -18,7 +18,7 @@ public class BattleScene : BasicScene
     public GameObject areaPanel;
     public Text textAreaPanel;
     public ItemPanelController itemPanel;
-    // public SkillPanelCtrl skillPanel;
+    public SkillPanelController skillPanel;
 
     private bool showingRewardPanel;// prevent multi update of reward panel;
     // Start is called before the first frame update
@@ -104,7 +104,7 @@ public class BattleScene : BasicScene
         showingRewardPanel = false;
         rewardPanel.gameObject.SetActive(false);
         itemPanel.gameObject.SetActive(false);
-        // skillPanel.gameObject.SetActive(false);
+        skillPanel.gameObject.SetActive(false);
         StartCoroutine("tick");
         //}
 
@@ -225,47 +225,47 @@ public class BattleScene : BasicScene
 
     public void OnSelectSkill(int elementId)
     {
-        // int skillId = skillPanel.elements[elementId].skillId;
-        // Skill s = skillPanel.elements[elementId].skill;
-        // if (skillId >= 0 && s != null)
-        // {
-        //     if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
-        //     {
-        //         battleCtrl.selectedSkill = s;
-        //         if (s.aoe)
-        //         {
-        //             if (s.useOn == GeneralSkill.UseOn.Opponent)
-        //             {
-        //                 battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_USE_ON_ENEMY;
-        //                 battleCtrl.useSelectedSpecial();
-        //             }
-        //             else
-        //             {
-        //                 battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER;
-        //                 battleCtrl.useSelectedSpecial();
-        //             }
-        //         }
-        //         else
-        //         {
-        //             if (s.useOn == GeneralSkill.UseOn.Opponent)
-        //             {
-        //                 battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_USE_ON_ENEMY;
-        //                 topBarText.text = Constant.topBarSelectAnEnemy;
-        //             }
-        //             else if (s.useOn == GeneralSkill.UseOn.Self)
-        //             {
-        //                 battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER;
-        //                 battleCtrl.useSelectedSpecial();
-        //             }
-        //             else
-        //             {
-        //                 battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_USE_ON_PARTNER;
-        //                 topBarText.text = Constant.topBarSelectPlayer;
-        //             }
-        //         }
-        //     }
-        //     skillPanel.gameObject.SetActive(false);
-        // }
+        int skillId = skillPanel.elements[elementId].SkillId;
+        Skill s = skillPanel.elements[elementId].Skill;
+        if (skillId >= 0 && s != null)
+        {
+            if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
+            {
+                battleCtrl.selectedSkill = s;
+                if (s.isAOE)
+                {
+                    if (s.useOn == UseOn.Opponent)
+                    {
+                        battleCtrl.selectionMode = BattleCtrl.Selection.SkillUseOnOpponent;
+                        battleCtrl.UseSelectedSpecial();
+                    }
+                    else
+                    {
+                        battleCtrl.selectionMode = BattleCtrl.Selection.SkillUseOnPartner;
+                        battleCtrl.UseSelectedSpecial();
+                    }
+                }
+                else
+                {
+                    if (s.useOn == UseOn.Opponent)
+                    {
+                        battleCtrl.selectionMode = BattleCtrl.Selection.SkillUseOnOpponent;
+                        topBarText.text = Constant.topBarSelectAnEnemy;
+                    }
+                    else if (s.useOn == UseOn.Self)
+                    {
+                        battleCtrl.selectionMode = BattleCtrl.Selection.SkillUseOnPartner;
+                        battleCtrl.UseSelectedSpecial();
+                    }
+                    else
+                    {
+                        battleCtrl.selectionMode = BattleCtrl.Selection.SkillUseOnPartner;
+                        topBarText.text = Constant.topBarSelectPlayer;
+                    }
+                }
+            }
+            skillPanel.gameObject.SetActive(false);
+        }
     }
 
     public void onClickAttackButton()
@@ -298,16 +298,16 @@ public class BattleScene : BasicScene
 
     public void onClickSkillButton()
     {
-        // if (battleCtrl.battleState == BattleCtrl.PLAYER_TURN)
-        // {
-        //     battleCtrl.selectionMode = BattleCtrl.SELECTION_SKILL_PENDING;
-        //     topBar.gameObject.SetActive(true);
-        //     topBarText.text = Constant.topBarSelectASkill;
-        //     skillPanel.setSkillList((battleCtrl.actionEntity as EntityPlayer).skillList, battleCtrl.actionEntity as EntityPlayer);
-        //     skillPanel.gameObject.SetActive(true);
-        //     itemPanel.gameObject.SetActive(false);
-        //     skillPanel.render();
-        // }
+        if (battleCtrl.battleState == BattleCtrl.BattleState.PlayerTurn)
+        {
+            battleCtrl.selectionMode = BattleCtrl.Selection.SkillPending;
+            topBar.gameObject.SetActive(true);
+            topBarText.text = Constant.topBarSelectASkill;
+            skillPanel.SelectedPlayer = battleCtrl.actionEntity as EntityPlayer;
+            skillPanel.gameObject.SetActive(true);
+            itemPanel.gameObject.SetActive(false);
+            skillPanel.Render();
+        }
     }
 
     public void afterPlayerAction()

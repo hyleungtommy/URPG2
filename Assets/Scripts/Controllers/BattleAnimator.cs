@@ -99,6 +99,7 @@ public class BattleAnimator : MonoBehaviour
 
     private void CreateSkillObject(GameObject skillObject, Transform spawnLocation, string animationStateName)
     {
+        
         GameObject skillObj = Instantiate(skillObject, new Vector3(spawnLocation.position.x, spawnLocation.position.y, 5.0f), Quaternion.identity);
         skillObj.transform.SetParent(canvas.transform);
         skillObj.transform.localScale = new Vector3(100f, 100f, 1.0f);

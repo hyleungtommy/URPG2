@@ -36,7 +36,7 @@ namespace RPG
         public bool[] levelUps { get; set; }
         public List<ItemAndQty> virtualInventory { get; set; }
         public int selectedItemId { get; set; }
-        //public Skill selectedSkill { get; set; }
+        public Skill selectedSkill { get; set; }
         public BattleCtrl(EntityEnemy[] enemyParty, EntityPlayer[] playerParty, BattleScene scene)
         {
             this.enemyParty = enemyParty;
@@ -221,38 +221,38 @@ namespace RPG
                 PlayerTakeAction(Action.Item, item);
                 selectionMode = Selection.None;
             }
-            // else if (selectionMode == SELECTION_SKILL_USE_ON_ENEMY || selectionMode == SELECTION_SKILL_USE_ON_PARTNER)
-            // {
-            //     if (selectedSkill.aoe)
-            //     {
-            //         if (actionEntity is EntityPlayer && selectedSkill.useOn == GeneralSkill.UseOn.Opponent ||
-            //             actionEntity is EntityEnemy && selectedSkill.useOn == GeneralSkill.UseOn.Partner)
-            //         {
-            //             playerSelectedEntity = getAllLivingEnemy();
-            //         }
-            //         else if (actionEntity is EntityPlayer && selectedSkill.useOn == GeneralSkill.UseOn.Partner ||
-            //                  actionEntity is EntityEnemy && selectedSkill.useOn == GeneralSkill.UseOn.Opponent)
-            //         {
-            //             playerSelectedEntity = getAllLivingPlayer();
-            //         }
-            //     }
-            //     else if (selectedSkill.useOn == GeneralSkill.UseOn.Self)
-            //     {
-            //         //special handling for decoy skills: it uses on self but take action on all enemies
-            //         if (selectedSkill is SkillDecoy)
-            //         {
-            //             playerSelectedEntity = getAllLivingEnemy();
-            //         }
-            //         else
-            //         {
-            //             playerSelectedEntity = new Entity[] { actionEntity };
-            //         }
+            else if (selectionMode == Selection.SkillUseOnOpponent || selectionMode == Selection.SkillUseOnPartner)
+            {
+                if (selectedSkill.isAOE)
+                {
+                    if (actionEntity is EntityPlayer && selectedSkill.useOn == UseOn.Opponent ||
+                        actionEntity is EntityEnemy && selectedSkill.useOn == UseOn.Partner)
+                    {
+                        playerSelectedEntity = GetAllLivingEnemy();
+                    }
+                    else if (actionEntity is EntityPlayer && selectedSkill.useOn == UseOn.Partner ||
+                             actionEntity is EntityEnemy && selectedSkill.useOn == UseOn.Opponent)
+                    {
+                        playerSelectedEntity = GetAllLivingPlayer();
+                    }
+                }
+                else if (selectedSkill.useOn == UseOn.Self)
+                {
+                    //special handling for decoy skills: it uses on self but take action on all enemies
+                    if (selectedSkill is SkillDecoy)
+                    {
+                        playerSelectedEntity = GetAllLivingEnemy();
+                    }
+                    else
+                    {
+                        playerSelectedEntity = new Entity[] { actionEntity };
+                    }
 
-            //     }
+                }
 
-            //     playerTakeAction(ACTION_SKILL, selectedSkill);
-            //     selectionMode = SELECTION_NONE;
-            // }
+                PlayerTakeAction(Action.Skill, selectedSkill);
+                selectionMode = Selection.None;
+            }
         }
 
         private bool DoesPartyLost(Friction friction)

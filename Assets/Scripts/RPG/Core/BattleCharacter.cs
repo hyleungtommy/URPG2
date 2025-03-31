@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG
@@ -71,6 +72,7 @@ namespace RPG
             foreach (Skill skill in job.skillList)
             {
                 Skill clonedSkill = Instantiate(skill); // Create a unique instance
+                clonedSkill.skillLv = 1;
                 SkillList.Add(clonedSkill);
             }
         }
@@ -127,8 +129,8 @@ namespace RPG
             
             //Debug.Log(name + " stat:" + combinedStat.ToString() + " equip stat: " + equipmentManager.getEquipmentStat().ToString() + " enchant stat=" + equipmentManager.getEquipmentEnchantmentStat().ToString() + " elementalDamage=" + combinedElementalDamage.ToString() + " elementalResistance=" + combinedElementalResistance.ToString());
             
-            //EntityPlayer player = new EntityPlayer(name, combinedStat, faceImg, job.CreateEntityPlayerSkillList());
-            EntityPlayer player = new EntityPlayer(name, combinedStat, faceImg);
+            EntityPlayer player = new EntityPlayer(name, combinedStat, faceImg, SkillList.Where(skill => skill.skillLv > 0).ToList());
+            //EntityPlayer player = new EntityPlayer(name, combinedStat, faceImg);
             // player.elementResistance = combinedElementalResistance;
             // player.elementalDamage = combinedElementalDamage;
             return player;
